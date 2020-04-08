@@ -1,7 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Banner from "./shared/Banner.jsx";
 import Pagination from "react-js-pagination";
 import { datas, brand } from "../../constants/data";
+import { Link } from "react-router-dom";
+import CarDetails from "../Pages/CarDetails.jsx";
 
 function ModelOption(Brand) {
   const { selectedBrand } = Brand;
@@ -16,38 +18,46 @@ function ModelOption(Brand) {
 }
 
 function ProductList(ProductVal) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const { Product } = ProductVal;
+
   return (
-    <div className="col-lg-4">
-      <div className="car-item gray-bg text-center">
-        <div className="car-image">
-          <img className="img-fluid" src="images/car/01.jpg" alt="" />
-          <div className="car-overlay-banner">
-            <ul>
-              <li>
-                <a href="cardetail.html">
-                  <i className="fa fa-link"></i>
-                </a>
-              </li>
+    <Fragment>
+      <CarDetails show={show} close={handleClose} carDetails={Product}></CarDetails>
+
+      <div className="col-lg-4" key={Product._id}>
+        <div className="car-item gray-bg text-center">
+          <div className="car-image">
+            <img className="img-fluid" src={Product.mainImage} alt="" />
+            <div className="car-overlay-banner">
+              <ul>
+                <li>
+                  <Link exact="true" onClick={handleShow}>
+                    <i className="fa fa-link"></i>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="car-list">
+            <ul className="list-inline">
+              <li>YEAR:{Product.year}</li>
+              <li>OWNERS: {Product.owners}</li>
+              <li>KM: {Product.km}</li>
             </ul>
           </div>
-        </div>
-        <div className="car-list">
-          <ul className="list-inline">
-            <li>YEAR:{Product.year}</li>
-            <li>OWNERS: {Product.owners}</li>
-            <li>KM: {Product.km}</li>
-          </ul>
-        </div>
-        <div className="car-content">
-          <a href="/">{Product.model}</a>
-          <div className="separator"></div>
-          <div className="price">
-            <span className="new-price">₹{Product.price}</span>
+          <div className="car-content">
+            <a href="/">{Product.model}</a>
+            <div className="separator"></div>
+            <div className="price">
+              <span className="new-price">₹{Product.price}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 }
 
@@ -61,7 +71,8 @@ class Buy extends React.Component {
       selectedBrand: null,
       selectedYear: null,
       selectedFuel: null,
-      selectedModel: null
+      selectedModel: null,
+      products: []
     };
   }
 
@@ -143,8 +154,21 @@ class Buy extends React.Component {
     return products.items;
   }
 
+  componentDidMount() {
+    fetch("http://rajcarschennai.in/api/cars")
+      .then(results => {
+        return results.json();
+      })
+      .then(result => {
+        this.setState({ products: result.data });
+      })
+      .catch(error => {
+        console.error("Error with fetch operation:", error);
+      });
+  }
+
   render() {
-    const products = this.handleProductList({ items: datas });
+    const products = this.handleProductList({ items: this.state.products });
     const displayProduct = products.length === 0 ? "block" : "none";
 
     return (

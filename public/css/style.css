@@ -1428,9 +1428,9 @@ ul.page-breadcrumb li a:hover { color: #db2d2e; }
 /*car-details-sidebar*/
 .car-details-sidebar h5 { position: relative; padding-bottom: 10px; margin-bottom: 20px; }
 .car-details-sidebar h5:before { position: absolute; content: ""; width: 20px; height: 2px; background: #db2d2e; left: 0; bottom: 0px; }
-.car-details-sidebar .details-block ul li { display: block; padding-bottom: 10px; border-bottom: 1px solid #e3e3e3; margin-bottom: 10px; }
+.car-details-sidebar .details-block ul li { display: block; padding-bottom: 10px; border-bottom: 1px solid #e3e3e3; margin-bottom: 10px; line-height: 35px; }
 .car-details-sidebar .details-block ul li:last-child { border-bottom: 0px; }
-.car-details-sidebar .details-block ul li span { width: 150px; display: inline-block; }
+.car-details-sidebar .details-block ul li span { width: 130px; display: inline-block; }
 .car-details-sidebar .details-block ul li strong { display: inline-block; text-align: right; color: #363636; }
 
 /*details-social*/
