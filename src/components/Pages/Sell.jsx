@@ -2,6 +2,39 @@ import React, { Fragment } from "react";
 import Banner from "./shared/Banner.jsx";
 
 class Sell extends React.Component {
+
+  // Invoked after the component rerendered. Ie after render function executed and after updation of state or props.
+  componentDidUpdate() {
+    console.log("Componet Did update");
+  }
+
+  // invoked before the component rerendered. IE before render function executed and after updation of state or props.
+  componentWillUpdate() {
+    console.log("Component Will upate");
+  }
+
+  // To avoid rerendering based on conditions. IF return false the component will not rerender.
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("state", nextState);
+    console.log("props", nextProps);
+    return true;
+  }
+
+  // Invoked once before the render function is executed for the first time.
+  componentWillMount() {
+    console.log("Component will Mount");
+  }
+
+  // Invoked once after the render function is executed for the first time.
+  componentDidMount() {
+    console.log("Component Did Mount");
+  }
+
+  // Invoked before the component is finally unmounted from the DOM.
+  componentWillUnmount() {
+    console.log("Componet will un mount");
+  }
+
   render() {
     return (
       <Fragment>

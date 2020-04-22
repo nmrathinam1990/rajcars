@@ -18,7 +18,7 @@
         full_width: true,           // make menu full width. options (true) or (false)
         // MOBILE MODE SETTINGS
         mobile_settings: {
-            collapse: false,    // collapse the menu on click. options (true) or (false)
+            collapse: true,    // collapse the menu on click. options (true) or (false)
             sibling: true,      // hide the others showing drop downs when click on current drop down. options (true) or (false)
             scrollBar: true,    // enable the scroll bar. options (true) or (false)
             scrollBar_height: 400,  // scroll bar height in px value. this option works if the scrollBar option true.
@@ -252,7 +252,7 @@
                     }
                 },
                 // outside click to close drop downs
-                /*outside_close: function () {
+                outside_close: function () {
                     // check if the outside close setting true for desktop
                     if (settings.outside_click_close === true
                         && settings.trigger === 'click'
@@ -268,7 +268,7 @@
                         // on mobile mode off the click trigger
                         $(document).off('click');
                     }
-                },*/
+                },
                 // scroll bar for mobile mode
                 scroll_bar: function () {
                     // check if the scroll bar true
@@ -382,7 +382,7 @@
             Canvas.hover_trigger();
             Canvas.mobile_trigger();
             Canvas.click_trigger();
-            // Canvas.outside_close();
+            Canvas.outside_close();
             Canvas.scroll_bar();
             Canvas.top_Fixed();
             Canvas.sticky_Header();

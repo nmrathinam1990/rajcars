@@ -1,22 +1,65 @@
 import React from "react";
 import { Header, Main, Footer } from "./Layouts";
-import { About, Buy, Sell, Exchange, Loan, Contact } from "./Pages";
+import {
+  About,
+  Buy,
+  Sell,
+  Exchange,
+  Loan,
+  Contact,
+  GenericNotFound,
+  AdminLogin,
+  AdminDashboard
+} from "./Pages";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header></Header>
+    <BrowserRouter forceRefresh={false}>
       <Switch>
-        <Route exact path="/" component={Main} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/buy" component={Buy} />
-        <Route exact path="/sell" component={Sell} />
-        <Route exact path="/exchange" component={Exchange} />
-        <Route exact path="/loan" component={Loan} />
-        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/">
+          <Header headerClass="topbar-dark"></Header>
+          <Main />
+          <Footer></Footer>
+        </Route>
+        <Route exact path="/about">
+          <Header headerClass="default"></Header>
+          <About />
+          <Footer></Footer>
+        </Route>
+        <Route exact path="/buy">
+          <Header headerClass="default"></Header>
+          <Buy></Buy>
+          <Footer></Footer>
+        </Route>
+        <Route exact path="/sell">
+          <Header headerClass="default"></Header>
+          <Sell></Sell>
+          <Footer></Footer>
+        </Route>
+        <Route exact path="/exchange">
+          <Header headerClass="default"></Header>
+          <Exchange></Exchange>
+          <Footer></Footer>
+        </Route>
+        <Route exact path="/loan">
+          <Header headerClass="default"></Header>
+          <Loan></Loan>
+          <Footer></Footer>
+        </Route>
+        <Route exact path="/contact">
+          <Header headerClass="default"></Header>
+          <Contact></Contact>
+          <Footer></Footer>
+        </Route>
+        <Route exact path="/admin-login">
+          <AdminLogin />
+        </Route>
+        <Route exact path="/admin-dashboard">
+          <AdminDashboard />
+        </Route>
+        <Route component={GenericNotFound} />
       </Switch>
-      <Footer></Footer>
     </BrowserRouter>
   );
 }

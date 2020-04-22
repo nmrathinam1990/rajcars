@@ -13,6 +13,7 @@ function ModelOption(Brand) {
         <option value={model.value}>{model.option}</option>
       ));
     }
+    return null;
   });
   return opt;
 }
@@ -25,7 +26,11 @@ function ProductList(ProductVal) {
 
   return (
     <Fragment>
-      <CarDetails show={show} close={handleClose} carDetails={Product}></CarDetails>
+      <CarDetails
+        show={show}
+        close={handleClose}
+        carDetails={Product}
+      ></CarDetails>
 
       <div className="col-lg-4" key={Product._id}>
         <div className="car-item gray-bg text-center">
@@ -155,7 +160,7 @@ class Buy extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://rajcarschennai.in/api/cars")
+    fetch("http://rajcarschennai.in/api/cars.json")
       .then(results => {
         return results.json();
       })

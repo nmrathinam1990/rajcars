@@ -1,0 +1,11 @@
+
+@mixin myColor {
+    color: red;
+}
+
+header{
+    border: 2px solid red;
+    .app{
+        @include myColor;
+    }
+}

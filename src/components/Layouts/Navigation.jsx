@@ -1,19 +1,17 @@
 import React from "react";
 import Logo from "./logo-dark.png";
 
-import { changeHeaderClass,  changeMenu} from "../../redux/actions";
+import { changeHeaderClass, changeMenu } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Navigation extends React.Component {
   handleActive = val => {
-    localStorage.setItem('selectedMenu', val);
+    localStorage.setItem("selectedMenu", val);
     this.props.changeMenu(val);
-    this.props.changeHeaderClass(val);
   };
   render() {
     const activeMenu = this.props.activeMenu;
-    console.log(activeMenu);
     return (
       <div className="menu">
         <nav id="menu" className="mega-menu">
@@ -92,6 +90,11 @@ class Navigation extends React.Component {
                         Contact
                       </Link>
                     </li>
+                    <li>
+                      <Link exact="true" to="/admin-login">
+                        Admin Login
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -103,14 +106,13 @@ class Navigation extends React.Component {
   }
 }
 
-function mapStateToProps(state){
-  return{
+function mapStateToProps(state) {
+  return {
     activeMenu: state.activeMenu.menu
-  }
+  };
 }
 
 const mapDispatchToProps = {
-  changeHeaderClass,
   changeMenu
 };
 

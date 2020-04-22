@@ -1,2 +1,1 @@
-export const CHANGE_HEADER_CLASS = "CHANGE_HEADER_CLASS";
 export const CHANGE_MENU = "CHANGE_MENU";
