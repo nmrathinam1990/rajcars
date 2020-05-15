@@ -192,6 +192,7 @@ class Buy extends React.Component {
                 <div className="sorting-options-main">
                   <div className="row">
                     <div className="col-md-3">
+                      <h4>Filter your search</h4>
                       <h6 style={filterClass}>By City</h6>
                       <div className="selected-box">
                         <input type="text" name="city" />
