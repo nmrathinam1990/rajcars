@@ -9,7 +9,7 @@ class About extends React.Component {
         <section className="welcome-4 page-section-ptb white-bg">
           <div className="container">
             <div className="row justify-content-center">
-              <div className="col-md-10">
+              <div className="col-md-12">
                 <div className="section-title">
                   <h2>rajcarschennai.in</h2>
                   <div className="separator"></div>

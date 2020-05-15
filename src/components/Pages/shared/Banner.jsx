@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
 class Banner extends React.Component {
   render() {
@@ -17,19 +15,6 @@ class Banner extends React.Component {
             </div>
             <div className="col-md-6 text-md-right float-right" style={display}>
               <ul className="page-breadcrumb">
-                <li>
-                  <a href="/">
-                    <FontAwesomeIcon icon={faHome} /> Home
-                  </a>
-                  <FontAwesomeIcon icon={faAngleDoubleRight} />
-                </li>
-                <li>
-                  <a href="/">pages</a>
-                  <FontAwesomeIcon icon={faAngleDoubleRight} />
-                </li>
-                <li>
-                  <span>{title}</span>
-                </li>
               </ul>
             </div>
           </div>

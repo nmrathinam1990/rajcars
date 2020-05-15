@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "./logo-dark.png";
 
-import { changeHeaderClass, changeMenu } from "../../redux/actions";
+import { changeMenu } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -21,7 +21,7 @@ class Navigation extends React.Component {
                 <div className="col-md-12">
                   <ul className="menu-logo">
                     <li>
-                      <a href="index.html">
+                      <a href="/">
                         <img id="logo_dark_img" src={Logo} alt="logo" />
                       </a>
                     </li>
@@ -34,15 +34,6 @@ class Navigation extends React.Component {
                         onClick={() => this.handleActive("home")}
                       >
                         Home
-                      </Link>
-                    </li>
-                    <li className={activeMenu === "about" ? "active" : ""}>
-                      <Link
-                        exact="true"
-                        to="/about"
-                        onClick={() => this.handleActive("about")}
-                      >
-                        About Us
                       </Link>
                     </li>
                     <li className={activeMenu === "buy" ? "active" : ""}>
@@ -70,6 +61,15 @@ class Navigation extends React.Component {
                         onClick={() => this.handleActive("exchange")}
                       >
                         Exchange
+                      </Link>
+                    </li>
+                    <li className={activeMenu === "about" ? "active" : ""}>
+                      <Link
+                        exact="true"
+                        to="/about"
+                        onClick={() => this.handleActive("about")}
+                      >
+                        About Us
                       </Link>
                     </li>
                     <li className={activeMenu === "loan" ? "active" : ""}>

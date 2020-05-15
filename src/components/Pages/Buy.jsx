@@ -7,10 +7,12 @@ import CarDetails from "../Pages/CarDetails.jsx";
 
 function ModelOption(Brand) {
   const { selectedBrand } = Brand;
-  const opt = brand.map(val => {
+  const opt = brand.map((val) => {
     if (val.value === selectedBrand) {
-      return val.model.map(model => (
-        <option value={model.value}>{model.option}</option>
+      return val.model.map((model) => (
+        <option style={{ textTransform: "lowercase" }} value={model.value}>
+          {model.option}
+        </option>
       ));
     }
     return null;
@@ -77,7 +79,7 @@ class Buy extends React.Component {
       selectedYear: null,
       selectedFuel: null,
       selectedModel: null,
-      products: []
+      products: [],
     };
   }
 
@@ -86,13 +88,13 @@ class Buy extends React.Component {
       this.setState({
         start: this.state.start - 9,
         end: this.state.end - 9,
-        activePage: pageNumber
+        activePage: pageNumber,
       });
     } else {
       this.setState({
         start: this.state.start + 9,
         end: this.state.end + 9,
-        activePage: pageNumber
+        activePage: pageNumber,
       });
     }
   }
@@ -100,28 +102,28 @@ class Buy extends React.Component {
   handleBrand(e) {
     const brand = e.target.value !== "null" ? e.target.value : null;
     this.setState({
-      selectedBrand: brand
+      selectedBrand: brand,
     });
   }
 
   handleModel(e) {
     const model = e.target.value !== "null" ? e.target.value : null;
     this.setState({
-      selectedModel: model
+      selectedModel: model,
     });
   }
 
   handleYear(e) {
     const year = e.target.value !== "null" ? e.target.value : null;
     this.setState({
-      selectedYear: year
+      selectedYear: year,
     });
   }
 
   handleFuel(e) {
     const fuel = e.target.value !== "null" ? e.target.value : null;
     this.setState({
-      selectedFuel: fuel
+      selectedFuel: fuel,
     });
   }
 
@@ -129,21 +131,21 @@ class Buy extends React.Component {
     // Brand filter
     if (this.state.selectedBrand !== null) {
       products.items = products.items.filter(
-        val => val.brand === this.state.selectedBrand
+        (val) => val.brand === this.state.selectedBrand
       );
     }
 
     // Model filter
     if (this.state.selectedModel !== null) {
       products.items = products.items.filter(
-        val => val.model === this.state.selectedModel
+        (val) => val.model === this.state.selectedModel
       );
     }
 
     //Year Filter
     if (this.state.selectedYear !== null) {
       products.items = products.items.filter(
-        val =>
+        (val) =>
           val.year >= this.state.selectedYear.split("-")[0] &&
           val.year <= this.state.selectedYear.split("-")[1]
       );
@@ -152,7 +154,7 @@ class Buy extends React.Component {
     //Fuel Filter
     if (this.state.selectedFuel !== null) {
       products.items = products.items.filter(
-        val => val.fuel === this.state.selectedFuel
+        (val) => val.fuel === this.state.selectedFuel
       );
     }
 
@@ -161,13 +163,13 @@ class Buy extends React.Component {
 
   componentDidMount() {
     fetch("http://rajcarschennai.in/api/cars.json")
-      .then(results => {
+      .then((results) => {
         return results.json();
       })
-      .then(result => {
+      .then((result) => {
         this.setState({ products: result.data });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error with fetch operation:", error);
       });
   }
@@ -175,6 +177,10 @@ class Buy extends React.Component {
   render() {
     const products = this.handleProductList({ items: this.state.products });
     const displayProduct = products.length === 0 ? "block" : "none";
+    const filterClass = {
+      marginTop: "20px",
+      textTransform: "capitalize"
+    }
 
     return (
       <Fragment>
@@ -186,27 +192,125 @@ class Buy extends React.Component {
                 <div className="sorting-options-main">
                   <div className="row">
                     <div className="col-md-3">
-                      <span>Select make</span>
+                      <h6 style={filterClass}>By City</h6>
+                      <div className="selected-box">
+                        <input type="text" name="city" />
+                      </div>
+
+                      <h6 style={filterClass}>By Budget</h6>
                       <div className="selected-box">
                         <select
                           className="selectpicker"
-                          onChange={e => this.handleBrand(e)}
+                          onChange={(e) => this.handleModel(e)}
+                          multiple="multiple"
+                        >
+                          <option value="null">Under ₹2 Lakhs</option>
+                          <option value="2005-2010">₹2 - 5 Lakhs</option>
+                          <option value="2010-2015">₹5 - 10 Lakhs</option>
+                          <option value="2015-2020">Above ₹10 Lakhs</option>
+                        </select>
+                      </div>
+
+                      <h6 style={filterClass}>By Brand or Modal</h6>
+                      <div className="selected-box">
+                        <select
+                          className="selectpicker"
+                          onChange={(e) => this.handleYear(e)}
+                        >
+                          <option value="null">Year</option>
+                          <option value="2005-2010">2005-2010</option>
+                          <option value="2010-2015">2010-2015</option>
+                          <option value="2015-2020">2015-2020</option>
+                        </select>
+                      </div>
+
+                      <h6 style={filterClass}>By Kilometers Driven</h6>
+                      <div className="selected-box">
+                        <select
+                          className="selectpicker"
+                          onChange={(e) => this.handleFuel(e)}
+                        >
+                          <option value="null">Fuel</option>
+                          <option value="diesel">Diesel</option>
+                          <option value="petrol">Petrol</option>
+                          <option value="lPG">LPG</option>
+                        </select>
+                      </div>
+
+                      <h6 style={filterClass}>By Model Year</h6>
+                      <div className="selected-box">
+                        <select
+                          className="selectpicker"
+                          onChange={(e) => this.handleBrand(e)}
                         >
                           <option value={"null"}>Brand</option>
-                          {brand.map(val => (
+                          {brand.map((val) => (
                             <option value={val.value} key={`${val.value}_abc`}>
                               {val.option}
                             </option>
                           ))}
                         </select>
                       </div>
-                    </div>
-                    <div className="col-md-3">
-                      <span>Select model</span>
+
+                      <h6 style={filterClass}>By Fuel Type</h6>
                       <div className="selected-box">
                         <select
                           className="selectpicker"
-                          onChange={e => this.handleModel(e)}
+                          onChange={(e) => this.handleModel(e)}
+                        >
+                          <option value={"null"}>Model</option>
+                          <ModelOption
+                            selectedBrand={this.state.selectedBrand}
+                          ></ModelOption>
+                        </select>
+                      </div>
+
+                      <h6 style={filterClass}>By Transmission Type</h6>
+                      <div className="selected-box">
+                        <select
+                          className="selectpicker"
+                          onChange={(e) => this.handleYear(e)}
+                        >
+                          <option value="null">Year</option>
+                          <option value="2005-2010">2005-2010</option>
+                          <option value="2010-2015">2010-2015</option>
+                          <option value="2015-2020">2015-2020</option>
+                        </select>
+                      </div>
+
+                      <h6 style={filterClass}>By Body Type</h6>
+                      <div className="selected-box">
+                        <select
+                          className="selectpicker"
+                          onChange={(e) => this.handleFuel(e)}
+                        >
+                          <option value="null">Fuel</option>
+                          <option value="diesel">Diesel</option>
+                          <option value="petrol">Petrol</option>
+                          <option value="lPG">LPG</option>
+                        </select>
+                      </div>
+
+                      <h6 style={filterClass}>By Number of Owners</h6>
+                      <div className="selected-box">
+                        <select
+                          className="selectpicker"
+                          onChange={(e) => this.handleBrand(e)}
+                        >
+                          <option value={"null"}>Brand</option>
+                          {brand.map((val) => (
+                            <option value={val.value} key={`${val.value}_abc`}>
+                              {val.option}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <h6 style={filterClass}>By Registration Location</h6>
+                      <div className="selected-box">
+                        <select
+                          className="selectpicker"
+                          onChange={(e) => this.handleModel(e)}
                         >
                           <option value={"null"}>Model</option>
                           <ModelOption
@@ -215,63 +319,36 @@ class Buy extends React.Component {
                         </select>
                       </div>
                     </div>
-                    <div className="col-md-3">
-                      <span>Select year</span>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={e => this.handleYear(e)}
+
+                    <div className="col-md-9">
+                      {products
+                        .slice(this.state.start, this.state.end)
+                        .map((val) => {
+                          return <ProductList Product={val}></ProductList>;
+                        })}
+                      <div className="car-item gray-bg text-center">
+                        <h1
+                          style={{
+                            display: displayProduct,
+                            fontSize: "16px",
+                            textAlign: "center",
+                          }}
+                          className="text-center"
                         >
-                          <option value="null">Year</option>
-                          <option value="2005-2010">2005-2010</option>
-                          <option value="2010-2015">2010-2015</option>
-                          <option value="2015-2020">2015-2020</option>
-                        </select>
+                          No Records Found!..
+                        </h1>
+                      </div>
+
+                      <div className="pagination-nav d-flex justify-content-center">
+                        <Pagination
+                          activePage={this.state.activePage}
+                          itemsCountPerPage={9}
+                          totalItemsCount={datas.length}
+                          onChange={this.handlePageChange.bind(this)}
+                        />
                       </div>
                     </div>
-                    <div className="col-md-3">
-                      <span>Select Fuel Type</span>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={e => this.handleFuel(e)}
-                        >
-                          <option value="null">Fuel</option>
-                          <option value="diesel">Diesel</option>
-                          <option value="petrol">Petrol</option>
-                          <option value="lPG">LPG</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="row">
-                    {products
-                      .slice(this.state.start, this.state.end)
-                      .map(val => {
-                        return <ProductList Product={val}></ProductList>;
-                      })}
-                    <div className="car-item gray-bg text-center">
-                      <h1
-                        style={{
-                          display: displayProduct,
-                          fontSize: "16px",
-                          textAlign: "center"
-                        }}
-                        className="text-center"
-                      >
-                        No Records Found!..
-                      </h1>
-                    </div>
-                  </div>
-
-                  <div className="pagination-nav d-flex justify-content-center">
-                    <Pagination
-                      activePage={this.state.activePage}
-                      itemsCountPerPage={9}
-                      totalItemsCount={datas.length}
-                      onChange={this.handlePageChange.bind(this)}
-                    />
                   </div>
                 </div>
               </div>

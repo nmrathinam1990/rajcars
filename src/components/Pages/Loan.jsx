@@ -11,13 +11,13 @@ class Loan extends React.Component {
   render() {
     return (
       <Fragment>
-        <Banner title="loan"></Banner>
+        <Banner title="Our Services"></Banner>
         <section className="privacy-policy page-section-ptb">
           <div className="container">
             <div className="row">
               <div className="col-md-12">
                 <div className="section-title">
-                  <h2>Loan</h2>
+                  <h2>Our Services</h2>
                   <div className="separator"></div>
                 </div>
               </div>

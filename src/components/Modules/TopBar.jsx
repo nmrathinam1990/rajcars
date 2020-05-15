@@ -1,12 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTwitter,
-  faFacebook,
-  faInstagram,
-  faYoutube
-} from "@fortawesome/free-brands-svg-icons";
-import {
   faPhone,
   faEnvelope,
   faClock
@@ -37,26 +31,6 @@ class TopBar extends React.Component {
                 <ul className="list-inline">
                   <li>
                     <FontAwesomeIcon icon={faPhone} /> (+91) 9688157167
-                  </li>
-                  <li>
-                    <a href="/">
-                      <FontAwesomeIcon icon={faFacebook} />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/">
-                      <FontAwesomeIcon icon={faTwitter} />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/">
-                      <FontAwesomeIcon icon={faInstagram} />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/">
-                      <FontAwesomeIcon icon={faYoutube} />
-                    </a>
                   </li>
                 </ul>
               </div>
