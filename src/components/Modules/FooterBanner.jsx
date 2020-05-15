@@ -9,6 +9,9 @@ import {
 
 class FooterBanner extends React.Component {
   render() {
+    let whiltColor = {
+      color: '#fff'
+    }
     return (
       <section className="news-letter-main bg-1 bg-overlay-black-70">
         <div className="container">
@@ -23,22 +26,22 @@ class FooterBanner extends React.Component {
               <h6 className="text-white text-center">(+91) 9688157167</h6>
               <ul className="text-white text-center list-inline">
                 <li>
-                  <a href="/">
+                  <a href="/" style={whiltColor}>
                     <FontAwesomeIcon icon={faFacebook} />
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <a href="/" style={whiltColor}>
                     <FontAwesomeIcon icon={faTwitter} />
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <a href="/" style={whiltColor}>
                     <FontAwesomeIcon icon={faInstagram} />
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <a href="/" style={whiltColor}>
                     <FontAwesomeIcon icon={faYoutube} />
                   </a>
                 </li>

@@ -16,13 +16,14 @@ const iconColor = {
 
 class OurServices extends React.Component {
   render() {
+    let display = this.props.page === 'services' ? 'none' : 'block';
     return (
       <section className="our-service white-bg page-section-ptb">
         <div className="container">
           <div className="row">
-            <div className="col-md-7">
-              <h2>our services</h2>
-              <span>
+            <div className={display === 'none' ? "col-md-12" : "col-md-7" }>
+              <h2 style={{display:display}}>our services</h2>
+              <span style={{display:display}}>
                 We provide best services processus dynamicus, qui sequitur
                 mutationem co
               </span>
@@ -90,7 +91,7 @@ class OurServices extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-5">
+            <div className="col-md-5" style={{display: display}}>
               <img className="img-fluid" src={OurServiceImg} alt="" />
             </div>
           </div>

@@ -42,7 +42,7 @@ function App() {
           <Exchange></Exchange>
           <Footer></Footer>
         </Route>
-        <Route exact path="/loan">
+        <Route exact path="/services">
           <Header headerClass="default"></Header>
           <Loan></Loan>
           <Footer></Footer>

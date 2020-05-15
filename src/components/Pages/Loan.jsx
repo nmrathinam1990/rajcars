@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Banner from "./shared/Banner.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import OurServices from "../Modules/OurServices.jsx";
 
 const liStyle = {
   lineHeight: '35px'
@@ -51,6 +52,7 @@ class Loan extends React.Component {
                   </li>
                 </ul>
               </div>
+              <OurServices page="services"></OurServices>
             </div>
           </div>
         </section>

@@ -72,13 +72,13 @@ class Navigation extends React.Component {
                         About Us
                       </Link>
                     </li>
-                    <li className={activeMenu === "loan" ? "active" : ""}>
+                    <li className={activeMenu === "services" ? "active" : ""}>
                       <Link
                         exact="true"
-                        to="/loan"
-                        onClick={() => this.handleActive("loan")}
+                        to="/services"
+                        onClick={() => this.handleActive("services")}
                       >
-                        Loan
+                        Our Services
                       </Link>
                     </li>
                     <li className={activeMenu === "contact" ? "active" : ""}>
