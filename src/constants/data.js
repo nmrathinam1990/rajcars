@@ -1,464 +1,814 @@
 export const datas = [
   {
-    year: 2011,
-    owners: 1,
-    km: 34000,
-    brand: "maruti_suzuki",
-    model: "MARUTI 800",
-    price: 80000,
-    fuel: 'petrol'
+    message: "Successful",
+    status: 200,
+    data: {
+      content: [
+        {
+          carId: "1014550459",
+          carName: "Mercedes Benz C Class",
+          year: 2010,
+          fuelType: "Petrol",
+          kilometerDriven: 102984,
+          price: 665000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/11/20/CYZ36DD/v0/exteriorTyres/mainImages/frontleftside_1574251134.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Mumbai",
+          views: 20815,
+          bodyType: "Luxury Sedan",
+          transmission: "Automatic",
+          storeName: "Vashi",
+          variant: "200 K ELEGANCE AT",
+          isC24Assured: false,
+          registrationCity: "Navi Mumbai",
+          registrationState: "Maharashtra",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "MH01",
+          carSource: "C2C_DEALER_CAR",
+          make: "MERCEDES BENZ",
+          model: "C CLASS",
+          lmsShareLink: "https://buy.24c.in/NOZeEV",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 3,
+          parkingYardId: null,
+          c24Quote: 650000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1048775954",
+          carName: "Honda Accord",
+          year: 2006,
+          fuelType: "Petrol",
+          kilometerDriven: 86960,
+          price: 175000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/10/5/CYC36DD/v0/exteriorTyres/mainImages/frontleftside_1570259612.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Hyderabad",
+          views: 1713,
+          bodyType: "Sedan",
+          transmission: "Manual",
+          storeName: "Kompally",
+          variant: "2.4 VTI L MT",
+          isC24Assured: false,
+          registrationCity: "New Delhi",
+          registrationState: "Delhi",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "DL3C",
+          carSource: "CUSTOMER_CARE",
+          make: "HONDA",
+          model: "ACCORD",
+          lmsShareLink: "https://buy.24c.in/GbZYJe",
+          inventoryStatus: null,
+          ownerNumber: 2,
+          parkingYardId: null,
+          c24Quote: 20000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1140529711",
+          carName: "Ford Fiesta",
+          year: 2008,
+          fuelType: "Diesel",
+          kilometerDriven: 114310,
+          price: 111000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/03/3/CQ5RYQX/v0/exteriorTyres/mainImages/frontleftside_1551597043.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Ahmedabad",
+          views: 124,
+          bodyType: "Sedan",
+          transmission: "Manual",
+          storeName: "S G Highway",
+          variant: "1.4 SXI TDCI ABS",
+          isC24Assured: false,
+          registrationCity: "Ahmedabad",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "GJ01",
+          carSource: null,
+          make: "FORD",
+          model: "FIESTA",
+          lmsShareLink: "https://buy.24c.in/kKrUHb",
+          inventoryStatus: null,
+          ownerNumber: 2,
+          parkingYardId: null,
+          c24Quote: 47000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1141781784",
+          carName: "Maruti Swift",
+          year: 2008,
+          fuelType: "Petrol + CNG",
+          kilometerDriven: 85657,
+          price: 150000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2020/02/7/RRRXZ33/v0/exteriorTyres/mainImages/frontleftside_1581078122.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Ahmedabad",
+          views: 557,
+          bodyType: "Hatchback",
+          transmission: "Manual",
+          storeName: "Navrangpura - 2",
+          variant: "VXI 1.3",
+          isC24Assured: false,
+          registrationCity: "Ahmedabad",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 1031,
+          registrationNumber: "GJ01",
+          carSource: "CUSTOMER_CARE",
+          make: "MARUTI",
+          model: "SWIFT",
+          lmsShareLink: "https://buy.24c.in/xJvVeE",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 2,
+          parkingYardId: null,
+          c24Quote: 0,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1137243751",
+          carName: "Chevrolet Spark",
+          year: 2011,
+          fuelType: "Petrol",
+          kilometerDriven: 81323,
+          price: 100000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/10/24/CY3CRYZ/v0/exteriorTyres/mainImages/frontleftside_1571903527.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Chennai",
+          views: 3238,
+          bodyType: "Hatchback",
+          transmission: "Manual",
+          storeName: "T Nagar",
+          variant: "LT 1.0",
+          isC24Assured: false,
+          registrationCity: "Pondicherry",
+          registrationState: "Puducherry",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "PY01",
+          carSource: "CUSTOMER_CARE",
+          make: "CHEVROLET",
+          model: "SPARK",
+          lmsShareLink: "https://buy.24c.in/IhT4jN",
+          inventoryStatus: null,
+          ownerNumber: 1,
+          parkingYardId: null,
+          c24Quote: 0,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1148549010",
+          carName: "Volkswagen Vento",
+          year: 2011,
+          fuelType: "Diesel",
+          kilometerDriven: 62428,
+          price: 251000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/03/8/CQ5YZ33/v0/exteriorTyres/mainImages/frontleftside_1552047848.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Ahmedabad",
+          views: 356,
+          bodyType: "Sedan",
+          transmission: "Manual",
+          storeName: "Naroda",
+          variant: "TRENDLINE DIESEL",
+          isC24Assured: false,
+          registrationCity: "Ahmedabad",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 3000,
+          registrationNumber: "GJ01",
+          carSource: null,
+          make: "VOLKSWAGEN",
+          model: "VENTO",
+          lmsShareLink: "https://buy.24c.in/DzcRWR",
+          inventoryStatus: null,
+          ownerNumber: 1,
+          parkingYardId: null,
+          c24Quote: 179000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1163394052",
+          carName: "Chevrolet Beat",
+          year: 2013,
+          fuelType: "Diesel",
+          kilometerDriven: 88065,
+          price: 300000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/12/1/RCCR6ZZ/v0/exteriorTyres/mainImages/frontleftside_1575176800.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Chandigarh",
+          views: 130,
+          bodyType: "Hatchback",
+          transmission: "Manual",
+          storeName: "Sector 40 D",
+          variant: "LS DIESEL",
+          isC24Assured: true,
+          registrationCity: "Chandigarh",
+          registrationState: "Chandigarh",
+          isTopSelling: false,
+          calculatedScore: 1750,
+          registrationNumber: "CH01",
+          carSource: "MANUAL_UPLOAD",
+          make: "CHEVROLET",
+          model: "BEAT",
+          lmsShareLink: "https://buy.24c.in/aeww0E",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 1,
+          parkingYardId: null,
+          c24Quote: 66000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1146796272",
+          carName: "Tata Indica V2",
+          year: 2006,
+          fuelType: "Diesel",
+          kilometerDriven: 66909,
+          price: 27000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/02/16/CQQCQXZ/v0/exteriorTyres/mainImages/frontleftside_1550313370.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Ahmedabad",
+          views: 303,
+          bodyType: "Hatchback",
+          transmission: "Manual",
+          storeName: "Naroda",
+          variant: "DLG BS III",
+          isC24Assured: false,
+          registrationCity: "Ahmedabad",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "GJ01",
+          carSource: null,
+          make: "TATA",
+          model: "INDICA V2",
+          lmsShareLink: "https://buy.24c.in/sniNYQ",
+          inventoryStatus: null,
+          ownerNumber: 2,
+          parkingYardId: null,
+          c24Quote: 16000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1192981484",
+          carName: "Honda City",
+          year: 2010,
+          fuelType: "Petrol",
+          kilometerDriven: 70410,
+          price: 225000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2020/02/7/RRRXZQ5/v0/exteriorTyres/mainImages/frontleftside_1581076645.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Kolkata",
+          views: 764,
+          bodyType: "Sedan",
+          transmission: "Manual",
+          storeName: "Lake Town",
+          variant: "S MT PETROL",
+          isC24Assured: false,
+          registrationCity: "Kharagpur",
+          registrationState: "West Bengal",
+          isTopSelling: false,
+          calculatedScore: 377,
+          registrationNumber: "WB06",
+          carSource: "CUSTOMER_CARE",
+          make: "HONDA",
+          model: "CITY",
+          lmsShareLink: "https://buy.24c.in/OW0qgO",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 3,
+          parkingYardId: null,
+          c24Quote: 131000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1248281988",
+          carName: "Hyundai Grand i10",
+          year: 2018,
+          fuelType: "Diesel",
+          kilometerDriven: 7147,
+          price: 705000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2020/02/5/RRRDRZQ/v0/exteriorTyres/mainImages/frontleftside_1580889867.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Nasik",
+          views: 362,
+          bodyType: "Hatchback",
+          transmission: "Manual",
+          storeName: "Mumbai Naka",
+          variant: "ASTA 1.2 CRDI",
+          isC24Assured: true,
+          registrationCity: "Nashik",
+          registrationState: "Maharashtra",
+          isTopSelling: false,
+          calculatedScore: 476,
+          registrationNumber: "MH15",
+          carSource: "CUSTOMER_CARE",
+          make: "HYUNDAI",
+          model: "GRAND I10",
+          lmsShareLink: "https://buy.24c.in/quBR4U",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 1,
+          parkingYardId: null,
+          c24Quote: 470000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1146977856",
+          carName: "Maruti Alto K10",
+          year: 2013,
+          fuelType: "Petrol + CNG",
+          kilometerDriven: 97507,
+          price: 185000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/09/12/CZXDDRR/v0/exteriorTyres/mainImages/frontleftside_1568275646.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Ahmedabad",
+          views: 189,
+          bodyType: "Hatchback",
+          transmission: "Manual",
+          storeName: "Chandkheda Ahmedabad",
+          variant: "VXI ",
+          isC24Assured: true,
+          registrationCity: "Ahmedabad",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "GJ01",
+          carSource: "CUSTOMER_CARE",
+          make: "MARUTI",
+          model: "ALTO K10",
+          lmsShareLink: "https://buy.24c.in/qbdDdn",
+          inventoryStatus: null,
+          ownerNumber: 2,
+          parkingYardId: null,
+          c24Quote: 98000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1149014158",
+          carName: "Audi A4",
+          year: 2018,
+          fuelType: "Diesel",
+          kilometerDriven: 20379,
+          price: 3600000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/11/28/CYY5DCC/v0/exteriorTyres/mainImages/frontleftside_1574934018.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Ahmedabad",
+          views: 721,
+          bodyType: "Luxury Sedan",
+          transmission: "Automatic",
+          storeName: "Thaltej - Silaj Road",
+          variant: "35 TDI TECHNOLOGY",
+          isC24Assured: false,
+          registrationCity: "Ahmedabad",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "GJ01",
+          carSource: "CUSTOMER_CARE",
+          make: "AUDI",
+          model: "A4",
+          lmsShareLink: "https://buy.24c.in/BnPiTn",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 1,
+          parkingYardId: null,
+          c24Quote: 0,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1147404455",
+          carName: "Volvo S60",
+          year: 2015,
+          fuelType: "Diesel",
+          kilometerDriven: 110294,
+          price: 1800000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/11/26/CYY3CRD/v0/exteriorTyres/mainImages/frontleftside_1574752014.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Ahmedabad",
+          views: 305,
+          bodyType: "Luxury Sedan",
+          transmission: "Automatic",
+          storeName: "S G Highway",
+          variant: "SUMMUM D4",
+          isC24Assured: true,
+          registrationCity: "Ahmedabad",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "GJ18",
+          carSource: "CUSTOMER_CARE",
+          make: "VOLVO",
+          model: "S60",
+          lmsShareLink: "https://buy.24c.in/w4hwuQ",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 1,
+          parkingYardId: null,
+          c24Quote: 860000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1235154552",
+          carName: "Hyundai Verna",
+          year: 2011,
+          fuelType: "Diesel",
+          kilometerDriven: 73443,
+          price: 325000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/11/28/CYY56XQ/v0/exteriorTyres/mainImages/frontleftside_1574932789.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Nagpur",
+          views: 1017,
+          bodyType: "Sedan",
+          transmission: "Manual",
+          storeName: "Khamla Chowk",
+          variant: "FLUIDIC 1.6 CRDI SX OPT",
+          isC24Assured: true,
+          registrationCity: "Nagpur",
+          registrationState: "Maharashtra",
+          isTopSelling: false,
+          calculatedScore: 411,
+          registrationNumber: "MH21",
+          carSource: "CUSTOMER_CARE",
+          make: "HYUNDAI",
+          model: "VERNA",
+          lmsShareLink: "https://buy.24c.in/qAsFr1",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 3,
+          parkingYardId: null,
+          c24Quote: 182000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1234822510",
+          carName: "Audi A6",
+          year: 2013,
+          fuelType: "Diesel",
+          kilometerDriven: 149321,
+          price: 2050000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/09/4/CZ3Y553/v0/exteriorTyres/mainImages/frontleftside_1567589551.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Nagpur",
+          views: 375,
+          bodyType: "Luxury Sedan",
+          transmission: "Automatic",
+          storeName: "Vardhaman Nagar",
+          variant: "2.0 TDI",
+          isC24Assured: false,
+          registrationCity: "Nagpur",
+          registrationState: "Maharashtra",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "MH46",
+          carSource: "CUSTOMER_CARE",
+          make: "AUDI",
+          model: "A6",
+          lmsShareLink: "https://buy.24c.in/ozUE0f",
+          inventoryStatus: null,
+          ownerNumber: 2,
+          parkingYardId: null,
+          c24Quote: 1944000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1197368082",
+          carName: "Mahindra XUV500",
+          year: 2013,
+          fuelType: "Diesel",
+          kilometerDriven: 108106,
+          price: 400000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2020/03/4/RRX6YQC/v0/exteriorTyres/mainImages/frontleftside_1583301699.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Kolkata",
+          views: 1334,
+          bodyType: "SUV",
+          transmission: "Manual",
+          storeName: "Alipore",
+          variant: "W6 4X2",
+          isC24Assured: false,
+          registrationCity: "Kolkata",
+          registrationState: "West Bengal",
+          isTopSelling: false,
+          calculatedScore: 100,
+          registrationNumber: "WB22",
+          carSource: "MANUAL_UPLOAD",
+          make: "MAHINDRA",
+          model: "XUV500",
+          lmsShareLink: "https://buy.24c.in/Xfqwvl",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 1,
+          parkingYardId: null,
+          c24Quote: 0,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1353943157",
+          carName: "Maruti Eeco",
+          year: 2010,
+          fuelType: "Petrol + CNG",
+          kilometerDriven: 149988,
+          price: 160000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/10/22/CYDZC6Y/v0/exteriorTyres/mainImages/frontleftside_1571743970.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Surat",
+          views: 413,
+          bodyType: "SUV",
+          transmission: "Manual",
+          storeName: "Adajan",
+          variant: "5 STR WITH AC PLUSHTR",
+          isC24Assured: false,
+          registrationCity: "Surat",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "GJ05",
+          carSource: "CUSTOMER_CARE",
+          make: "MARUTI",
+          model: "EECO",
+          lmsShareLink: "https://buy.24c.in/XNBzl3",
+          inventoryStatus: null,
+          ownerNumber: 3,
+          parkingYardId: null,
+          c24Quote: 0,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1353595758",
+          carName: "Toyota Innova",
+          year: 2010,
+          fuelType: "Diesel",
+          kilometerDriven: 228292,
+          price: 700000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/10/1/CZYY33X/v0/exteriorTyres/mainImages/frontleftside_1569929872.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Surat",
+          views: 108,
+          bodyType: "SUV",
+          transmission: "Manual",
+          storeName: "Adajan",
+          variant: "2.5 G4 7 STR",
+          isC24Assured: true,
+          registrationCity: "Surat",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "GJ05",
+          carSource: "CUSTOMER_CARE",
+          make: "TOYOTA",
+          model: "INNOVA",
+          lmsShareLink: "https://buy.24c.in/HzBiFE",
+          inventoryStatus: null,
+          ownerNumber: 2,
+          parkingYardId: null,
+          c24Quote: 360000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1359310653",
+          carName: "Skoda Fabia",
+          year: 2009,
+          fuelType: "Petrol",
+          kilometerDriven: 59391,
+          price: 73000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/12/16/RCDCCXY/v0/exteriorTyres/mainImages/frontleftside_1576490821.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Surat",
+          views: 2004,
+          bodyType: "Hatchback",
+          transmission: "Manual",
+          storeName: "Adajan",
+          variant: "AMBIENTE 1.2 MPI",
+          isC24Assured: false,
+          registrationCity: "Surat",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 14,
+          registrationNumber: "GJ05",
+          carSource: "MANUAL_UPLOAD",
+          make: "SKODA",
+          model: "FABIA",
+          lmsShareLink: "https://buy.24c.in/QF4lPB",
+          inventoryStatus: "NEW_CAR",
+          ownerNumber: 2,
+          parkingYardId: null,
+          c24Quote: 44000,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+        {
+          carId: "1362865857",
+          carName: "Maruti Eeco",
+          year: 2015,
+          fuelType: "Petrol + CNG",
+          kilometerDriven: 107517,
+          price: 275000,
+          mainImage: {
+            title: "Front Left Side",
+            url:
+              "inspection/2019/11/4/CYQ3YQQ/v0/exteriorTyres/mainImages/frontleftside_1572845237.jpg",
+          },
+          baseUrl: "https://img.cars24.tech/unsafe/",
+          dispositionStatus: "PUBLISHED",
+          city: "Vadodara",
+          views: 136,
+          bodyType: "SUV",
+          transmission: "Manual",
+          storeName: "Old Padra Road",
+          variant: "5 STR WITH AC PLUSHTR",
+          isC24Assured: false,
+          registrationCity: "Anand",
+          registrationState: "Gujarat",
+          isTopSelling: false,
+          calculatedScore: 0,
+          registrationNumber: "GJ13",
+          carSource: "CUSTOMER_CARE",
+          make: "MARUTI",
+          model: "EECO",
+          lmsShareLink: "https://buy.24c.in/lzkXJI",
+          inventoryStatus: null,
+          ownerNumber: 4,
+          parkingYardId: null,
+          c24Quote: 0,
+          originalPrice: null,
+          dealRating: null,
+          cars24Owned: false,
+          warrantyAvailable: false,
+        },
+      ],
+      pageable: {
+        sort: {
+          unsorted: true,
+          sorted: false,
+        },
+        pageSize: 20,
+        pageNumber: 0,
+        offset: 0,
+        unpaged: false,
+        paged: true,
+      },
+      totalElements: 64018,
+      totalPages: 3201,
+      metaContent: null,
+      popularCategoryFilter: null,
+      filters: [
+        {
+          filterType: "CUSTOM_TYPE",
+          field: "customLogicShowBookedAndPublished",
+          name: "customLogicShowBookedAndPublished",
+        },
+      ],
+      city: null,
+      dynamicFilters: null,
+    },
   },
-  {
-    year: 2011,
-    owners: 1,
-    km: 34000,
-    brand: "maruti_suzuki",
-    model: "ALTO",
-    price: 80000,
-    fuel: 'diesel'
-  },
-  {
-    year: 2011,
-    owners: 1,
-    km: 34000,
-    brand: "maruti_suzuki",
-    model: "ALTO 800",
-    price: 80000,
-    fuel: 'petrol'
-  },
-  {
-    year: 2011,
-    owners: 1,
-    km: 34000,
-    brand: "maruti_suzuki",
-    model: "ALTO K10",
-    price: 80000,
-    fuel: 'petrol'
-  },
-  {
-    year: 2011,
-    owners: 1,
-    km: 34000,
-    brand: "maruti_suzuki",
-    model: "A STAR",
-    price: 80000,
-    fuel: 'petrol'
-  },
-  {
-    year: 2011,
-    owners: 1,
-    km: 34000,
-    brand: "maruti_suzuki",
-    model: "EECO",
-    price: 80000,
-    fuel: 'petrol'
-  },
-  {
-    year: 2011,
-    owners: 1,
-    km: 34000,
-    brand: "maruti_suzuki",
-    model: "CELERIO",
-    price: 80000,
-    fuel: 'petrol'
-  }
-];
-
-export const brand = [
-  {
-    option: "Maruti Suzuki",
-    value: "maruti_suzuki",
-    model: [
-      {
-        option: "MARUTI 800",
-        value: "MARUTI 800"
-      },
-      {
-        option: "ALTO",
-        value: "ALTO"
-      },
-      {
-        option: "ALTO 800",
-        value: "ALTO 800"
-      },
-      {
-        option: "ALTO K10",
-        value: "ALTO K10"
-      },
-      {
-        option: "A STAR",
-        value: "A STAR"
-      },
-      {
-        option: "EECO",
-        value: "EECO"
-      },
-      {
-        option: "CELERIO",
-        value: "CELERIO"
-      },
-      {
-        option: "IGNIS",
-        value: "IGNIS"
-      },
-      {
-        option: "ZEN ESTILO",
-        value: "ZEN ESTILO"
-      },
-      {
-        option: "WAGONR",
-        value: "WAGONR"
-      },
-      {
-        option: "SWIFT",
-        value: "SWIFT"
-      },
-      {
-        option: "SWIFT DZIRE",
-        value: "SWIFT DZIRE"
-      },
-      {
-        option: "SX4",
-        value: "SX4"
-      },
-      {
-        option: "CIAZ",
-        value: "CIAZ"
-      },
-      {
-        option: "BALENO",
-        value: "BALENO"
-      },
-      {
-        option: "S CROSS4",
-        value: "S CROSS"
-      },
-      {
-        option: "VITARA BREEZA",
-        value: "VITARA BREEZA"
-      },
-      {
-        option: "ERTIGA",
-        value: "ERTIGA"
-      }
-    ]
-  },
-  {
-    option: "Hyundai",
-    value: "hyundai",
-    model: [
-      {
-        option: "EON",
-        value: "EON"
-      },
-      {
-        option: "SANTRO XING",
-        value: "SANTRO XING"
-      },
-      {
-        option: "I10",
-        value: "I10"
-      },
-      {
-        option: "GRAND I10",
-        value: "GRAND I10"
-      },
-      {
-        option: "I20",
-        value: "I20"
-      },
-      {
-        option: "ELITE I20",
-        value: "ELITE I20"
-      },
-      {
-        option: "I20 ACTIVE",
-        value: "I20 ACTIVE"
-      },
-      {
-        option: "ACCENT",
-        value: "ACCENT"
-      },
-      {
-        option: "XCENT",
-        value: "XCENT"
-      },
-      {
-        option: "VERNA",
-        value: "VERNA"
-      },
-      {
-        option: "FLUIDIC VERNA",
-        value: "FLUIDIC VERNA"
-      },
-      {
-        option: "GETZ",
-        value: "GETZ"
-      },
-      {
-        option: "ELANTRA",
-        value: "ELANTRA"
-      },
-      {
-        option: "CRETA",
-        value: "CRETA"
-      },
-      {
-        option: "TUCSON",
-        value: "TUCSON"
-      }
-    ]
-  },
-  {
-    option: "Honda",
-    value: "honda",
-    model: [
-      {
-        option: "CITY",
-        value: "CITY"
-      },
-      {
-        option: "NEW CITY",
-        value: "NEW CITY"
-      },
-      {
-        option: "CIVIC",
-        value: "CIVIC"
-      },
-      {
-        option: "JAZZ",
-        value: "JAZZ"
-      },
-      {
-        option: "BRIO",
-        value: "BRIO"
-      },
-      {
-        option: "MOBILIO",
-        value: "MOBILIO"
-      },
-      {
-        option: "BRV",
-        value: "BRV"
-      },
-      {
-        option: "WRV",
-        value: "WRV"
-      },
-      {
-        option: "CRV",
-        value: "CRV"
-      }
-    ]
-  },
-  {
-    option: "Chevrolet",
-    value: "chevrolet",
-    model: [
-      {
-        option: "SPARK",
-        value: "SPARK"
-      },
-      {
-        option: "BEAT",
-        value: "BEAT"
-      },
-      {
-        option: "ENJOY",
-        value: "ENJOY"
-      },
-      {
-        option: "SAIL",
-        value: "SAIL"
-      },
-      {
-        option: "UVA",
-        value: "UVA"
-      }
-    ]
-  },
-  {
-    option: "Ford",
-    value: "ford",
-    model: [
-      {
-        option: "FIESTA",
-        value: "FIESTA"
-      },
-      {
-        option: "IKON",
-        value: "IKON"
-      },
-      {
-        option: "FIGO",
-        value: "FIGO"
-      },
-      {
-        option: "ECOSPORT",
-        value: "ECOSPORT"
-      },
-      {
-        option: "FIGO ASPIRE",
-        value: "FIGO ASPIRE"
-      }
-    ]
-  },
-  {
-    option: "Tata",
-    value: "tata",
-    model: [
-      {
-        option: "INDICA",
-        value: "INDICA"
-      },
-      {
-        option: "INDIGO",
-        value: "INDIGO"
-      },
-      {
-        option: "VISTA",
-        value: "VISTA"
-      },
-      {
-        option: "MANZA",
-        value: "MANZA"
-      },
-      {
-        option: "BOLT",
-        value: "BOLT"
-      },
-      {
-        option: "ZEST",
-        value: "ZEST"
-      },
-      {
-        option: "TIAGO",
-        value: "TIAGO"
-      },
-      {
-        option: "SUMO",
-        value: "SUMO"
-      },
-      {
-        option: "SAFARI",
-        value: "SAFARI"
-      },
-      {
-        option: "NEXON",
-        value: "NEXON"
-      },
-      {
-        option: "HEXA",
-        value: "HEXA"
-      },
-      {
-        option: "HARRIER",
-        value: "HARRIER"
-      }
-    ]
-  },
-  {
-    option: "Toyota",
-    value: "toyota",
-    model: [
-      {
-        option: "INNOVA",
-        value: "INNOVA"
-      },
-      {
-        option: "INNOVA CRYSTA",
-        value: "INNOVA CRYSTA"
-      },
-      {
-        option: "ETIOS LIVA",
-        value: "ETIOS LIVA"
-      },
-      {
-        option: "ETIOS",
-        value: "ETIOS"
-      },
-      {
-        option: "COROLLA",
-        value: "COROLLA"
-      },
-      {
-        option: "FORTUNER",
-        value: "FORTUNER"
-      }
-    ]
-  },
-  {
-    option: "Renault",
-    value: "renault",
-    model: [
-      {
-        option: "KWID",
-        value: "KWID"
-      },
-      {
-        option: "PULSE",
-        value: "PULSE"
-      },
-      {
-        option: "LODGY",
-        value: "LODGY"
-      },
-      {
-        option: "DUSTER",
-        value: "DUSTER"
-      },
-      {
-        option: "TRIBBER",
-        value: "TRIBBER"
-      }
-    ]
-  },
-  {
-    option: "Nissan",
-    value: "nissan",
-    model: [
-      {
-        option: "MICRA",
-        value: "MICRA"
-      },
-      {
-        option: "SUNNY",
-        value: "SUNNY"
-      },
-      {
-        option: "KICKS",
-        value: "KICKS"
-      }
-    ]
-  },
-  {
-    option: "Mahindra",
-    value: "mahindra",
-    model: [
-      {
-        option: "LOGAN",
-        value: "LOGAN"
-      },
-      {
-        option: "SCORPIO",
-        value: "SCORPIO"
-      },
-      {
-        option: "XUV 300",
-        value: "XUV 300"
-      },
-      {
-        option: "TUV 300",
-        value: "TUV 300"
-      },
-      {
-        option: "KUV100",
-        value: "KUV100"
-      },
-      {
-        option: "BOLERO",
-        value: "BOLERO"
-      }
-    ]
-  }
 ];

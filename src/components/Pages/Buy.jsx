@@ -1,30 +1,20 @@
 import React, { Fragment, useState } from "react";
 import Banner from "./shared/Banner.jsx";
 import Pagination from "react-js-pagination";
-import { datas, brand } from "../../constants/data";
+import { datas } from "../../constants/data";
 import { Link } from "react-router-dom";
 import CarDetails from "../Pages/CarDetails.jsx";
+import ToggleBox from "./ToggleBox";
+import Slider from "react-rangeslider";
 
-function ModelOption(Brand) {
-  const { selectedBrand } = Brand;
-  const opt = brand.map((val) => {
-    if (val.value === selectedBrand) {
-      return val.model.map((model) => (
-        <option style={{ textTransform: "lowercase" }} value={model.value}>
-          {model.option}
-        </option>
-      ));
-    }
-    return null;
-  });
-  return opt;
-}
+import "../Pages/assets/css/rangeslider.min.css";
 
 function ProductList(ProductVal) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { Product } = ProductVal;
+  const baseURL = "https://img.cars24.tech/unsafe/260x188/";
 
   return (
     <Fragment>
@@ -34,14 +24,18 @@ function ProductList(ProductVal) {
         carDetails={Product}
       ></CarDetails>
 
-      <div className="col-lg-4" key={Product._id}>
+      <div className="col-lg-4" key={Product.carId}>
         <div className="car-item gray-bg text-center">
           <div className="car-image">
-            <img className="img-fluid" src={Product.mainImage} alt="" />
+            <img
+              className="img-fluid"
+              src={baseURL + Product.mainImage.url}
+              alt=""
+            />
             <div className="car-overlay-banner">
               <ul>
                 <li>
-                  <Link exact="true" onClick={handleShow}>
+                  <Link exact="true" onClick={handleShow} to="#">
                     <i className="fa fa-link"></i>
                   </Link>
                 </li>
@@ -51,8 +45,8 @@ function ProductList(ProductVal) {
           <div className="car-list">
             <ul className="list-inline">
               <li>YEAR:{Product.year}</li>
-              <li>OWNERS: {Product.owners}</li>
-              <li>KM: {Product.km}</li>
+              <li>OWNERS: {Product.ownerNumber}</li>
+              <li>KM: {Product.kilometerDriven}</li>
             </ul>
           </div>
           <div className="car-content">
@@ -76,9 +70,11 @@ class Buy extends React.Component {
       end: 9,
       activePage: 1,
       selectedBrand: null,
-      selectedYear: null,
+      selectedYear: "all",
       selectedFuel: null,
       selectedModel: null,
+      selectedBudget: "all",
+      selectedKM: 0,
       products: [],
     };
   }
@@ -99,20 +95,6 @@ class Buy extends React.Component {
     }
   }
 
-  handleBrand(e) {
-    const brand = e.target.value !== "null" ? e.target.value : null;
-    this.setState({
-      selectedBrand: brand,
-    });
-  }
-
-  handleModel(e) {
-    const model = e.target.value !== "null" ? e.target.value : null;
-    this.setState({
-      selectedModel: model,
-    });
-  }
-
   handleYear(e) {
     const year = e.target.value !== "null" ? e.target.value : null;
     this.setState({
@@ -127,23 +109,66 @@ class Buy extends React.Component {
     });
   }
 
-  handleProductList(products) {
-    // Brand filter
-    if (this.state.selectedBrand !== null) {
-      products.items = products.items.filter(
-        (val) => val.brand === this.state.selectedBrand
-      );
-    }
+  handleBodyType(e) {}
+  handleBrand(e) {}
 
-    // Model filter
-    if (this.state.selectedModel !== null) {
-      products.items = products.items.filter(
-        (val) => val.model === this.state.selectedModel
-      );
+  //Budget filter value
+  handleBudget(e) {
+    const budget = e.target.value !== "all" ? e.target.value : "all";
+    this.setState({
+      activePage: 1,
+      selectedBudget: budget,
+      start: 0,
+      end: 9,
+    });
+  }
+
+  handleCity(e) {}
+
+  // KM driven filter value
+  handleKM = (value) => {
+    this.setState({
+      selectedKM: value,
+      start: 0,
+      end: 9,
+      activePage: 1,
+    });
+  };
+  handleOwners(e) {}
+  handleRegisterLocation(e) {}
+  handleTransmission(e) {}
+
+  handleProductList(products) {
+    //Budget Filer
+    if (this.state.selectedBudget !== "all") {
+      products.items = products.items.filter((val) => {
+        if (this.state.selectedBudget === "200000") {
+          return val.price <= this.state.selectedBudget;
+        } else if (this.state.selectedBudget === "200000-500000") {
+          return val.price >= "200000" && val.price <= "500000";
+        } else if (this.state.selectedBudget === "500000 - 1000000") {
+          return val.price >= "500000" && val.price <= "1000000";
+        } else if (this.state.selectedBudget === "1000000") {
+          return val.price >= "1000000";
+        }
+      });
     }
+    // // Brand filter
+    // if (this.state.selectedBrand !== null) {
+    //   products.data.content = products.items.filter(
+    //     (val) => val.brand === this.state.selectedBrand
+    //   );
+    // }
+
+    // // Model filter
+    // if (this.state.selectedModel !== null) {
+    //   products.items = products.items.filter(
+    //     (val) => val.model === this.state.selectedModel
+    //   );
+    // }
 
     //Year Filter
-    if (this.state.selectedYear !== null) {
+    if (this.state.selectedYear !== "all") {
       products.items = products.items.filter(
         (val) =>
           val.year >= this.state.selectedYear.split("-")[0] &&
@@ -151,23 +176,24 @@ class Buy extends React.Component {
       );
     }
 
-    //Fuel Filter
-    if (this.state.selectedFuel !== null) {
-      products.items = products.items.filter(
-        (val) => val.fuel === this.state.selectedFuel
-      );
-    }
+    // //Fuel Filter
+    // if (this.state.selectedFuel !== null) {
+    //   products.items = products.items.filter(
+    //     (val) => val.fuel === this.state.selectedFuel
+    //   );
+    // }
 
     return products.items;
   }
 
   componentDidMount() {
-    fetch("http://rajcarschennai.in/api/cars.json")
+    console.log("success");
+    fetch("https://api-sell24.cars24.team/cars")
       .then((results) => {
         return results.json();
       })
       .then((result) => {
-        this.setState({ products: result.data });
+        this.setState({ products: result.data.content });
       })
       .catch((error) => {
         console.error("Error with fetch operation:", error);
@@ -179,8 +205,9 @@ class Buy extends React.Component {
     const displayProduct = products.length === 0 ? "block" : "none";
     const filterClass = {
       marginTop: "20px",
-      textTransform: "capitalize"
-    }
+      textTransform: "capitalize",
+      cursor: "pointer",
+    };
 
     return (
       <Fragment>
@@ -191,143 +218,358 @@ class Buy extends React.Component {
               <div className="col-lg-12 col-md-12">
                 <div className="sorting-options-main">
                   <div className="row">
-                    <div className="col-md-3">
-                      <h4>Filter your search</h4>
+                    <div
+                      className="col-md-3"
+                      style={{ borderRight: "1px solid #ccc" }}
+                    >
+                      <h5>Filter your search</h5>
                       <h6 style={filterClass}>By City</h6>
                       <div className="selected-box">
-                        <input type="text" name="city" />
-                      </div>
-
-                      <h6 style={filterClass}>By Budget</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleModel(e)}
-                          multiple="multiple"
-                        >
-                          <option value="null">Under ₹2 Lakhs</option>
-                          <option value="2005-2010">₹2 - 5 Lakhs</option>
-                          <option value="2010-2015">₹5 - 10 Lakhs</option>
-                          <option value="2015-2020">Above ₹10 Lakhs</option>
+                        <select onChange={(e) => this.handleCity(e)}>
+                         
                         </select>
                       </div>
 
-                      <h6 style={filterClass}>By Brand or Modal</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleYear(e)}
-                        >
-                          <option value="null">Year</option>
-                          <option value="2005-2010">2005-2010</option>
-                          <option value="2010-2015">2010-2015</option>
-                          <option value="2015-2020">2015-2020</option>
-                        </select>
-                      </div>
-
-                      <h6 style={filterClass}>By Kilometers Driven</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleFuel(e)}
-                        >
-                          <option value="null">Fuel</option>
-                          <option value="diesel">Diesel</option>
-                          <option value="petrol">Petrol</option>
-                          <option value="lPG">LPG</option>
-                        </select>
-                      </div>
-
-                      <h6 style={filterClass}>By Model Year</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleBrand(e)}
-                        >
-                          <option value={"null"}>Brand</option>
-                          {brand.map((val) => (
-                            <option value={val.value} key={`${val.value}_abc`}>
-                              {val.option}
+                      <ToggleBox
+                        title="By Budget"
+                        design={filterClass}
+                        opened={true}
+                      >
+                        <div className="selected-box">
+                          <select onChange={(e) => this.handleBudget(e)}>
+                            <option value="all">All</option>
+                            <option value="200000">Under ₹2 Lakhs</option>
+                            <option value="200000-500000">₹2 - 5 Lakhs</option>
+                            <option value="500000-1000000">
+                              ₹5 - 10 Lakhs
                             </option>
-                          ))}
-                        </select>
-                      </div>
+                            <option value="1000000">Above ₹10 Lakhs</option>
+                          </select>
+                        </div>
+                      </ToggleBox>
 
-                      <h6 style={filterClass}>By Fuel Type</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleModel(e)}
-                        >
-                          <option value={"null"}>Model</option>
-                          <ModelOption
-                            selectedBrand={this.state.selectedBrand}
-                          ></ModelOption>
-                        </select>
-                      </div>
+                      <ToggleBox
+                        title="By Brand or Modal"
+                        design={filterClass}
+                        opened={true}
+                      >
+                        <div className="selected-box">
+                          <select
+                            className="selectpicker"
+                            onChange={(e) => this.handleBrand(e)}
+                          ></select>
+                        </div>
+                      </ToggleBox>
 
-                      <h6 style={filterClass}>By Transmission Type</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleYear(e)}
-                        >
-                          <option value="null">Year</option>
-                          <option value="2005-2010">2005-2010</option>
-                          <option value="2010-2015">2010-2015</option>
-                          <option value="2015-2020">2015-2020</option>
-                        </select>
-                      </div>
+                      <ToggleBox
+                        title="By Kilometers Driven"
+                        design={filterClass}
+                        opened={true}
+                      >
+                        <Slider
+                          min={0}
+                          max={150000}
+                          value={this.state.selectedKM}
+                          orientation="horizontal"
+                          onChange={this.handleKM}
+                          tooltip={true}
+                        />
+                      </ToggleBox>
 
-                      <h6 style={filterClass}>By Body Type</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleFuel(e)}
-                        >
-                          <option value="null">Fuel</option>
-                          <option value="diesel">Diesel</option>
-                          <option value="petrol">Petrol</option>
-                          <option value="lPG">LPG</option>
-                        </select>
-                      </div>
+                      <ToggleBox
+                        title="By Model Year"
+                        design={filterClass}
+                        opened={true}
+                      >
+                        <div className="selected-box">
+                          <select
+                            className="selectpicker"
+                            onChange={(e) => this.handleYear(e)}
+                          >
+                            <option value="all">All</option>
+                            <option value="2005-2010">2005-2010</option>
+                            <option value="2010-2015">2010-2015</option>
+                            <option value="2015-2020">2015-2020</option>
+                          </select>
+                        </div>
+                      </ToggleBox>
 
-                      <h6 style={filterClass}>By Number of Owners</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleBrand(e)}
-                        >
-                          <option value={"null"}>Brand</option>
-                          {brand.map((val) => (
-                            <option value={val.value} key={`${val.value}_abc`}>
-                              {val.option}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <ToggleBox title="By Fuel Type" design={filterClass}>
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="fuel_petrol"
+                            name="fuel"
+                            value="Petrol"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="fuel_petrol"
+                            className="custom-control-label"
+                          >
+                            Petrol
+                          </label>
+                        </div>
 
-                      <h6 style={filterClass}>By Registration Location</h6>
-                      <div className="selected-box">
-                        <select
-                          className="selectpicker"
-                          onChange={(e) => this.handleModel(e)}
-                        >
-                          <option value={"null"}>Model</option>
-                          <ModelOption
-                            selectedBrand={this.state.selectedBrand}
-                          ></ModelOption>
-                        </select>
-                      </div>
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="fuel_disel"
+                            name="fuel"
+                            value="Diesel"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="fuel_disel"
+                            className="custom-control-label"
+                          >
+                            Diesel
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="fuel_cng"
+                            name="fuel"
+                            value="CNG"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="fuel_cng"
+                            className="custom-control-label"
+                          >
+                            CNG
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="fuel_lpg"
+                            name="fuel"
+                            value="LPG"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="fuel_lpg"
+                            className="custom-control-label"
+                          >
+                            LPG
+                          </label>
+                        </div>
+                      </ToggleBox>
+
+                      <ToggleBox
+                        title="By Transmission Type"
+                        design={filterClass}
+                      >
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="transmission_manual"
+                            name="transmission"
+                            value="manual"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="transmission_manual"
+                            className="custom-control-label"
+                          >
+                            Manual
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="transmission_auto"
+                            name="transmission"
+                            value="automatic"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="transmission_auto"
+                            className="custom-control-label"
+                          >
+                            Automatic
+                          </label>
+                        </div>
+                      </ToggleBox>
+
+                      <ToggleBox title="By Body Type" design={filterClass}>
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="body_type_hatchback"
+                            name="body_type"
+                            value="hatchback"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="body_type_hatchback"
+                            className="custom-control-label"
+                          >
+                            Hatchback
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="body_type_sedan"
+                            name="body_type"
+                            value="automatic"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="body_type_sedan"
+                            className="custom-control-label"
+                          >
+                            Sedan
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="body_type_suv"
+                            name="body_type"
+                            value="automatic"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="body_type_suv"
+                            className="custom-control-label"
+                          >
+                            SUV
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="body_type_luxuary_sedan"
+                            name="body_type"
+                            value="automatic"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="body_type_luxuary_sedan"
+                            className="custom-control-label"
+                          >
+                            Luxury Sedan
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="body_type_luxury_suv"
+                            name="body_type"
+                            value="automatic"
+                            className="custom-control-input"
+                          />
+                          <label
+                            for="body_type_luxury_suv"
+                            className="custom-control-label"
+                          >
+                            Luxury SUV
+                          </label>
+                        </div>
+                      </ToggleBox>
+
+                      <ToggleBox
+                        title="By Number of Owners"
+                        design={filterClass}
+                      >
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="owner_1"
+                            name="owner"
+                            value="owner_1"
+                            className="custom-control-input"
+                          />
+                          <label for="owner_1" className="custom-control-label">
+                            1st Owner
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="owner_2"
+                            name="owner"
+                            value="owner_2"
+                            className="custom-control-input"
+                          />
+                          <label for="owner_2" className="custom-control-label">
+                            2nd Owner
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="owner_3"
+                            name="owner"
+                            value="owner_3"
+                            className="custom-control-input"
+                          />
+                          <label for="owner_3" className="custom-control-label">
+                            3rd Owner
+                          </label>
+                        </div>
+
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            id="owner_4"
+                            name="owner"
+                            value="owner_4"
+                            className="custom-control-input"
+                          />
+                          <label for="owner_4" className="custom-control-label">
+                            4th Owner & above
+                          </label>
+                        </div>
+                      </ToggleBox>
+
+                      <ToggleBox
+                        title="By Registration Location"
+                        design={filterClass}
+                      >
+                        <div className="selected-box">
+                          <select
+                            className="selectpicker"
+                            onChange={(e) => this.handleRegisterLocation(e)}
+                          >
+                            <option value={"null"}>Model</option>
+                          </select>
+                        </div>
+                      </ToggleBox>
                     </div>
 
                     <div className="col-md-9">
-                      {products
-                        .slice(this.state.start, this.state.end)
-                        .map((val) => {
-                          return <ProductList Product={val}></ProductList>;
-                        })}
-                      <div className="car-item gray-bg text-center">
+                      <div className="row">
+                        <h6
+                          style={{
+                            padding: "15px",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          {products.length} Used Cars in
+                        </h6>
+                      </div>
+                      <div className="row">
+                        {products
+                          .slice(this.state.start, this.state.end)
+                          .map((val) => {
+                            return <ProductList Product={val}></ProductList>;
+                          })}
+                      </div>
+                      <div className="car-item text-center">
                         <h1
                           style={{
                             display: displayProduct,
@@ -344,12 +586,11 @@ class Buy extends React.Component {
                         <Pagination
                           activePage={this.state.activePage}
                           itemsCountPerPage={9}
-                          totalItemsCount={datas.length}
+                          totalItemsCount={products.length}
                           onChange={this.handlePageChange.bind(this)}
                         />
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>

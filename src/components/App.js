@@ -7,9 +7,7 @@ import {
   Exchange,
   Loan,
   Contact,
-  GenericNotFound,
-  AdminLogin,
-  AdminDashboard
+  GenericNotFound
 } from "./Pages";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 
@@ -51,12 +49,6 @@ function App() {
           <Header headerClass="default"></Header>
           <Contact></Contact>
           <Footer></Footer>
-        </Route>
-        <Route exact path="/admin-login">
-          <AdminLogin />
-        </Route>
-        <Route exact path="/admin-dashboard">
-          <AdminDashboard />
         </Route>
         <Route component={GenericNotFound} />
       </Switch>

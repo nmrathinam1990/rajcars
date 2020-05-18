@@ -12,7 +12,7 @@ class CarDetails extends React.Component {
       <Fragment>
         <Modal show={this.props.show} onHide={this.props.close} size="lg">
           <Modal.Header closeButton>
-            <Modal.Title>{details.brand}</Modal.Title>
+            <Modal.Title>{details.carName} (₹ {details.price}) </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="row">
@@ -23,7 +23,7 @@ class CarDetails extends React.Component {
                   items={1}
                   autoplay={true}
                 >
-                  {images.map(val => {
+                  {images.map((val) => {
                     return (
                       <img
                         className="img-fluid center-block"
@@ -40,37 +40,25 @@ class CarDetails extends React.Component {
                   <div className="details-block details-weight">
                     <ul>
                       <li>
-                        <span>Make</span>
-                        <strong className="text-right">{details.brand}</strong>
-                      </li>
-                      <li>
-                        <span>Model</span>
-                        <strong className="text-right">{details.model}</strong>
-                      </li>
-                      <li>
-                        <span>Registration date </span>
+                        <span>Year</span>
                         <strong className="text-right">{details.year}</strong>
                       </li>
                       <li>
-                        <span>Mileage</span>
-                        <strong className="text-right">{details.km}</strong>
-                      </li>
-                      <li>
-                        <span>Condition</span>
+                        <span>Kms Driven</span>
                         <strong className="text-right">
-                          {details.condition}
+                          {details.kilometerDriven}
                         </strong>
                       </li>
                       <li>
-                        <span>Exterior Color</span>
+                        <span>Fuel Type </span>
                         <strong className="text-right">
-                          {details.extColor}
+                          {details.fuelType}
                         </strong>
                       </li>
                       <li>
-                        <span>Interior Color</span>
+                        <span>Owner</span>
                         <strong className="text-right">
-                          {details.intColor}
+                          {details.ownerNumber}
                         </strong>
                       </li>
                       <li>
@@ -80,13 +68,9 @@ class CarDetails extends React.Component {
                         </strong>
                       </li>
                       <li>
-                        <span>Engine</span>
-                        <strong className="text-right">{details.engine}</strong>
-                      </li>
-                      <li>
-                        <span>Drivetrain</span>
+                        <span>RTO</span>
                         <strong className="text-right">
-                          {details.driveTrain}
+                          {details.registrationNumber}
                         </strong>
                       </li>
                     </ul>

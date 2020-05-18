@@ -6,10 +6,6 @@ import Contact from "./Contact.jsx";
 import About from "./About.jsx";
 import GenericNotFound from "./GenericNotFound.jsx";
 
-//Admin Pages
-import AdminLogin from "./admin/Login";
-import AdminDashboard from "./admin/Dashboard";
-
 export {
   Loan,
   Exchange,
@@ -17,7 +13,5 @@ export {
   Sell,
   Contact,
   About,
-  GenericNotFound,
-  AdminLogin,
-  AdminDashboard
+  GenericNotFound
 };
