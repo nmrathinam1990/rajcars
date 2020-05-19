@@ -4,8 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPhone,
   faMapMarker,
-  faEnvelopeOpen
+  faEnvelopeOpen,
 } from "@fortawesome/free-solid-svg-icons";
+
+import locationQR from "../Pages/assets/locationQR.svg";
 
 class Contact extends React.Component {
   render() {
@@ -119,6 +121,9 @@ class Contact extends React.Component {
                     <h5>Email </h5>
                     <p> rajcarschennai@gmail.com </p>
                   </div>
+                </div>
+                <div style={{ width: "50%", height: "auto" }}>
+                  <img src={locationQR} alt="Location QR code" />
                 </div>
               </div>
             </div>

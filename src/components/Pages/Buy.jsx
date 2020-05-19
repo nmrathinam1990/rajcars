@@ -44,7 +44,7 @@ function ProductList(ProductVal) {
           </div>
           <div className="car-list">
             <ul className="list-inline">
-              <li>YEAR:{Product.year}</li>
+              <li>YR:{Product.year}</li>
               <li>OWNERS: {Product.ownerNumber}</li>
               <li>KM: {Product.kilometerDriven}</li>
             </ul>
@@ -71,7 +71,10 @@ class Buy extends React.Component {
       activePage: 1,
       selectedBrand: null,
       selectedYear: "all",
-      selectedFuel: null,
+      selectedFuel: [],
+      selectedTransmission: [],
+      selectedOwners: [],
+      selectedBodyType: [],
       selectedModel: null,
       selectedBudget: "all",
       selectedKM: 0,
@@ -79,6 +82,7 @@ class Buy extends React.Component {
     };
   }
 
+  // Pagination page change
   handlePageChange(pageNumber) {
     if (pageNumber < this.state.activePage) {
       this.setState({
@@ -95,21 +99,49 @@ class Buy extends React.Component {
     }
   }
 
+  //Year filter value
   handleYear(e) {
     const year = e.target.value !== "null" ? e.target.value : null;
     this.setState({
       selectedYear: year,
+      activePage: 1,
+      start: 0,
+      end: 9,
     });
   }
 
-  handleFuel(e) {
-    const fuel = e.target.value !== "null" ? e.target.value : null;
+  //Fuel filter value
+  handleFuel = (e) => {
+    let Fuel = [...this.state.selectedFuel];
+    if (Fuel.indexOf(e.target.value) === -1) {
+      Fuel.push(e.target.value);
+    } else {
+      Fuel.splice(this.state.selectedFuel.indexOf(e.target.value), 1);
+    }
     this.setState({
-      selectedFuel: fuel,
+      selectedFuel: Fuel,
+      activePage: 1,
+      start: 0,
+      end: 9,
     });
-  }
+  };
 
-  handleBodyType(e) {}
+  //Body Type filter value
+  handleBodyType = (e) => {
+    let bodyType = [...this.state.selectedBodyType];
+    if (bodyType.indexOf(e.target.value) === -1) {
+      bodyType.push(e.target.value);
+    } else {
+      bodyType.splice(this.state.selectedBodyType.indexOf(e.target.value), 1);
+    }
+    this.setState({
+      selectedBodyType: bodyType,
+      activePage: 1,
+      start: 0,
+      end: 9,
+    });
+  };
+
   handleBrand(e) {}
 
   //Budget filter value
@@ -134,12 +166,45 @@ class Buy extends React.Component {
       activePage: 1,
     });
   };
-  handleOwners(e) {}
-  handleRegisterLocation(e) {}
-  handleTransmission(e) {}
+
+  // Owners filter value
+  handleOwners = (e) => {
+    let Owners = [...this.state.selectedOwners];
+    let selectedOwerValue = parseInt(e.target.value);
+    if (Owners.indexOf(selectedOwerValue) === -1) {
+      Owners.push(selectedOwerValue);
+    } else {
+      Owners.splice(this.state.selectedOwners.indexOf(selectedOwerValue), 1);
+    }
+    this.setState({
+      selectedOwners: Owners,
+      activePage: 1,
+      start: 0,
+      end: 9,
+    });
+  };
+
+  // Transmission filter value
+  handleTransmission = (e) => {
+    let Transmission = [...this.state.selectedTransmission];
+    if (Transmission.indexOf(e.target.value) === -1) {
+      Transmission.push(e.target.value);
+    } else {
+      Transmission.splice(
+        this.state.selectedTransmission.indexOf(e.target.value),
+        1
+      );
+    }
+    this.setState({
+      selectedTransmission: Transmission,
+      activePage: 1,
+      start: 0,
+      end: 9,
+    });
+  };
 
   handleProductList(products) {
-    //Budget Filer
+    // Budget filter
     if (this.state.selectedBudget !== "all") {
       products.items = products.items.filter((val) => {
         if (this.state.selectedBudget === "200000") {
@@ -151,21 +216,9 @@ class Buy extends React.Component {
         } else if (this.state.selectedBudget === "1000000") {
           return val.price >= "1000000";
         }
+        return val;
       });
     }
-    // // Brand filter
-    // if (this.state.selectedBrand !== null) {
-    //   products.data.content = products.items.filter(
-    //     (val) => val.brand === this.state.selectedBrand
-    //   );
-    // }
-
-    // // Model filter
-    // if (this.state.selectedModel !== null) {
-    //   products.items = products.items.filter(
-    //     (val) => val.model === this.state.selectedModel
-    //   );
-    // }
 
     //Year Filter
     if (this.state.selectedYear !== "all") {
@@ -176,18 +229,38 @@ class Buy extends React.Component {
       );
     }
 
-    // //Fuel Filter
-    // if (this.state.selectedFuel !== null) {
-    //   products.items = products.items.filter(
-    //     (val) => val.fuel === this.state.selectedFuel
-    //   );
-    // }
+    //Fuel Filter
+    if (this.state.selectedFuel.length !== 0) {
+      products.items = products.items.filter((val) =>
+        this.state.selectedFuel.includes(val.fuelType)
+      );
+    }
+
+    //Transmission Filter
+    if (this.state.selectedTransmission.length !== 0) {
+      products.items = products.items.filter((val) =>
+        this.state.selectedTransmission.includes(val.transmission.toLowerCase())
+      );
+    }
+
+    //Body Type Filter
+    if (this.state.selectedBodyType.length !== 0) {
+      products.items = products.items.filter((val) =>
+        this.state.selectedBodyType.includes(val.bodyType.toLowerCase())
+      );
+    }
+
+    //Owners Filter
+    if (this.state.selectedOwners.length !== 0) {
+      products.items = products.items.filter((val) =>
+        this.state.selectedOwners.includes(val.ownerNumber)
+      );
+    }
 
     return products.items;
   }
 
   componentDidMount() {
-    console.log("success");
     fetch("https://api-sell24.cars24.team/cars")
       .then((results) => {
         return results.json();
@@ -223,12 +296,10 @@ class Buy extends React.Component {
                       style={{ borderRight: "1px solid #ccc" }}
                     >
                       <h5>Filter your search</h5>
-                      <h6 style={filterClass}>By City</h6>
+                      {/* <h6 style={filterClass}>By City</h6>
                       <div className="selected-box">
-                        <select onChange={(e) => this.handleCity(e)}>
-                         
-                        </select>
-                      </div>
+                        <select onChange={(e) => this.handleCity(e)}></select>
+                      </div> */}
 
                       <ToggleBox
                         title="By Budget"
@@ -253,12 +324,27 @@ class Buy extends React.Component {
                         design={filterClass}
                         opened={true}
                       >
-                        <div className="selected-box">
-                          <select
-                            className="selectpicker"
-                            onChange={(e) => this.handleBrand(e)}
-                          ></select>
-                        </div>
+                        {datas[0].content.map((val) => {
+                          var inputId = `make${val.key}`;
+                          return (
+                            <div className="custom-control custom-checkbox">
+                              <input
+                                type="checkbox"
+                                id={inputId}
+                                name="make"
+                                value={val.key}
+                                className="custom-control-input"
+                                onChange={this.handleBrand}
+                              />
+                              <label
+                                htmlFor={inputId}
+                                className="custom-control-label"
+                              >
+                                {val.value}
+                              </label>
+                            </div>
+                          );
+                        })}
                       </ToggleBox>
 
                       <ToggleBox
@@ -295,64 +381,68 @@ class Buy extends React.Component {
                       </ToggleBox>
 
                       <ToggleBox title="By Fuel Type" design={filterClass}>
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="fuel_petrol"
                             name="fuel"
                             value="Petrol"
                             className="custom-control-input"
+                            onChange={this.handleFuel}
                           />
                           <label
-                            for="fuel_petrol"
+                            htmlFor="fuel_petrol"
                             className="custom-control-label"
                           >
                             Petrol
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="fuel_disel"
                             name="fuel"
                             value="Diesel"
                             className="custom-control-input"
+                            onChange={this.handleFuel}
                           />
                           <label
-                            for="fuel_disel"
+                            htmlFor="fuel_disel"
                             className="custom-control-label"
                           >
                             Diesel
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="fuel_cng"
                             name="fuel"
                             value="CNG"
                             className="custom-control-input"
+                            onChange={this.handleFuel}
                           />
                           <label
-                            for="fuel_cng"
+                            htmlFor="fuel_cng"
                             className="custom-control-label"
                           >
                             CNG
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="fuel_lpg"
                             name="fuel"
                             value="LPG"
                             className="custom-control-input"
+                            onChange={this.handleFuel}
                           />
                           <label
-                            for="fuel_lpg"
+                            htmlFor="fuel_lpg"
                             className="custom-control-label"
                           >
                             LPG
@@ -364,32 +454,34 @@ class Buy extends React.Component {
                         title="By Transmission Type"
                         design={filterClass}
                       >
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="transmission_manual"
                             name="transmission"
                             value="manual"
                             className="custom-control-input"
+                            onChange={this.handleTransmission}
                           />
                           <label
-                            for="transmission_manual"
+                            htmlFor="transmission_manual"
                             className="custom-control-label"
                           >
                             Manual
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="transmission_auto"
                             name="transmission"
                             value="automatic"
                             className="custom-control-input"
+                            onChange={this.handleTransmission}
                           />
                           <label
-                            for="transmission_auto"
+                            htmlFor="transmission_auto"
                             className="custom-control-label"
                           >
                             Automatic
@@ -398,80 +490,85 @@ class Buy extends React.Component {
                       </ToggleBox>
 
                       <ToggleBox title="By Body Type" design={filterClass}>
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="body_type_hatchback"
                             name="body_type"
                             value="hatchback"
                             className="custom-control-input"
+                            onChange={this.handleBodyType}
                           />
                           <label
-                            for="body_type_hatchback"
+                            htmlFor="body_type_hatchback"
                             className="custom-control-label"
                           >
                             Hatchback
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="body_type_sedan"
                             name="body_type"
-                            value="automatic"
+                            value="sedan"
                             className="custom-control-input"
+                            onChange={this.handleBodyType}
                           />
                           <label
-                            for="body_type_sedan"
+                            htmlFor="body_type_sedan"
                             className="custom-control-label"
                           >
                             Sedan
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="body_type_suv"
                             name="body_type"
-                            value="automatic"
+                            value="suv"
                             className="custom-control-input"
+                            onChange={this.handleBodyType}
                           />
                           <label
-                            for="body_type_suv"
+                            htmlFor="body_type_suv"
                             className="custom-control-label"
                           >
                             SUV
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="body_type_luxuary_sedan"
                             name="body_type"
-                            value="automatic"
+                            value="luxury sedan"
                             className="custom-control-input"
+                            onChange={this.handleBodyType}
                           />
                           <label
-                            for="body_type_luxuary_sedan"
+                            htmlFor="body_type_luxuary_sedan"
                             className="custom-control-label"
                           >
                             Luxury Sedan
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
                             id="body_type_luxury_suv"
                             name="body_type"
-                            value="automatic"
+                            value="luxury suv"
                             className="custom-control-input"
+                            onChange={this.handleBodyType}
                           />
                           <label
-                            for="body_type_luxury_suv"
+                            htmlFor="body_type_luxury_suv"
                             className="custom-control-label"
                           >
                             Luxury SUV
@@ -483,60 +580,64 @@ class Buy extends React.Component {
                         title="By Number of Owners"
                         design={filterClass}
                       >
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
-                            id="owner_1"
+                            id="1"
                             name="owner"
-                            value="owner_1"
+                            value="1"
                             className="custom-control-input"
+                            onChange={this.handleOwners}
                           />
-                          <label for="owner_1" className="custom-control-label">
+                          <label htmlFor="1" className="custom-control-label">
                             1st Owner
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
-                            id="owner_2"
+                            id="2"
                             name="owner"
-                            value="owner_2"
+                            value="2"
                             className="custom-control-input"
+                            onChange={this.handleOwners}
                           />
-                          <label for="owner_2" className="custom-control-label">
+                          <label htmlFor="2" className="custom-control-label">
                             2nd Owner
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
-                            id="owner_3"
+                            id="3"
                             name="owner"
-                            value="owner_3"
+                            value="3"
                             className="custom-control-input"
+                            onChange={this.handleOwners}
                           />
-                          <label for="owner_3" className="custom-control-label">
+                          <label htmlFor="3" className="custom-control-label">
                             3rd Owner
                           </label>
                         </div>
 
-                        <div class="custom-control custom-checkbox">
+                        <div className="custom-control custom-checkbox">
                           <input
                             type="checkbox"
-                            id="owner_4"
+                            id="4"
                             name="owner"
-                            value="owner_4"
+                            value="4"
                             className="custom-control-input"
+                            onChange={this.handleOwners}
                           />
-                          <label for="owner_4" className="custom-control-label">
+                          <label htmlFor="4" className="custom-control-label">
                             4th Owner & above
                           </label>
                         </div>
                       </ToggleBox>
 
-                      <ToggleBox
+                      {/* <ToggleBox
                         title="By Registration Location"
                         design={filterClass}
                       >
@@ -548,7 +649,7 @@ class Buy extends React.Component {
                             <option value={"null"}>Model</option>
                           </select>
                         </div>
-                      </ToggleBox>
+                      </ToggleBox> */}
                     </div>
 
                     <div className="col-md-9">
