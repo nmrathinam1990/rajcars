@@ -5,7 +5,7 @@ class About extends React.Component {
   render() {
     return (
       <Fragment>
-        <Banner title="about"></Banner>
+        <Banner title="about" class="bg-1"></Banner>
         <section className="welcome-4 page-section-ptb white-bg">
           <div className="container">
             <div className="row justify-content-center">

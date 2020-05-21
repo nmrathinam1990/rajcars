@@ -5,14 +5,14 @@ import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import OurServices from "../Modules/OurServices.jsx";
 
 const liStyle = {
-  lineHeight: '35px'
-}
+  lineHeight: "35px",
+};
 
 class Loan extends React.Component {
   render() {
     return (
       <Fragment>
-        <Banner title="Our Services"></Banner>
+        <Banner title="Our Services" class="bg-1"></Banner>
         <section className="privacy-policy page-section-ptb">
           <div className="container">
             <div className="row">

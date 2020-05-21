@@ -13,7 +13,7 @@ class Contact extends React.Component {
   render() {
     return (
       <Fragment>
-        <Banner title="contact"></Banner>
+        <Banner title="contact" class="bg-1"></Banner>
         <section className="contact-2 page-section-ptb white-bg">
           <div className="container">
             <div className="row">
