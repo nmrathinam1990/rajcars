@@ -38,7 +38,7 @@ class Sell extends React.Component {
   render() {
     return (
       <Fragment>
-        <Banner title="Sell"></Banner>
+        <Banner title="Sell" class="bg-sell"></Banner>
         <section className="privacy-policy page-section-ptb">
           <div className="container">
             <div className="row">

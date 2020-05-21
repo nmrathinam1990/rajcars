@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import CarDetails from "../Pages/CarDetails.jsx";
 import ToggleBox from "./ToggleBox";
 import Slider from "react-rangeslider";
-
 import "../Pages/assets/css/rangeslider.min.css";
 
 function ProductList(ProductVal) {
@@ -69,7 +68,7 @@ class Buy extends React.Component {
       start: 0,
       end: 9,
       activePage: 1,
-      selectedBrand: null,
+      selectedBrand: [],
       selectedYear: "all",
       selectedFuel: [],
       selectedTransmission: [],
@@ -78,7 +77,10 @@ class Buy extends React.Component {
       selectedModel: null,
       selectedBudget: "all",
       selectedKM: 0,
+      searchBrand: "",
+      allBrands: datas[0],
       products: [],
+      rangeValue: { start: 20, end: 80 },
     };
   }
 
@@ -142,8 +144,6 @@ class Buy extends React.Component {
     });
   };
 
-  handleBrand(e) {}
-
   //Budget filter value
   handleBudget(e) {
     const budget = e.target.value !== "all" ? e.target.value : "all";
@@ -155,8 +155,6 @@ class Buy extends React.Component {
     });
   }
 
-  handleCity(e) {}
-
   // KM driven filter value
   handleKM = (value) => {
     this.setState({
@@ -164,6 +162,40 @@ class Buy extends React.Component {
       start: 0,
       end: 9,
       activePage: 1,
+    });
+  };
+
+  //Search Brand
+  handleSearchBrand = (event) => {
+    this.setState({
+      searchBrand: event.target.value,
+    });
+    let filterBrand = datas[0].content.filter((val) => {
+      return val.value
+        .toLowerCase()
+        .includes(this.state.searchBrand.toLowerCase());
+    });
+    this.setState({
+      allBrands: { content: filterBrand },
+    });
+  };
+
+  // Brand Filter value
+  handleBrand = (e) => {
+    let brand = [...this.state.selectedBrand];
+    if (brand.indexOf(e.target.value.toLowerCase()) === -1) {
+      brand.push(e.target.value.toLowerCase());
+    } else {
+      brand.splice(
+        this.state.selectedBrand.indexOf(e.target.value.toLowerCase()),
+        1
+      );
+    }
+    this.setState({
+      selectedBrand: brand,
+      activePage: 1,
+      start: 0,
+      end: 9,
     });
   };
 
@@ -211,7 +243,7 @@ class Buy extends React.Component {
           return val.price <= this.state.selectedBudget;
         } else if (this.state.selectedBudget === "200000-500000") {
           return val.price >= "200000" && val.price <= "500000";
-        } else if (this.state.selectedBudget === "500000 - 1000000") {
+        } else if (this.state.selectedBudget === "500000-1000000") {
           return val.price >= "500000" && val.price <= "1000000";
         } else if (this.state.selectedBudget === "1000000") {
           return val.price >= "1000000";
@@ -226,6 +258,13 @@ class Buy extends React.Component {
         (val) =>
           val.year >= this.state.selectedYear.split("-")[0] &&
           val.year <= this.state.selectedYear.split("-")[1]
+      );
+    }
+
+    //KM Driven Filter
+    if (this.state.selectedKM !== 0) {
+      products.items = products.items.filter(
+        (val) => val.kilometerDriven <= this.state.selectedKM
       );
     }
 
@@ -248,6 +287,18 @@ class Buy extends React.Component {
       products.items = products.items.filter((val) =>
         this.state.selectedBodyType.includes(val.bodyType.toLowerCase())
       );
+    }
+
+    //Brand Filter
+    if (this.state.selectedBrand.length !== 0) {
+      console.log("brand Array", this.state.selectedBrand);
+      products.items = products.items.filter((val) => {
+        return (
+          this.state.selectedBrand.includes(val.make.toLowerCase()) ||
+          this.state.selectedBrand.includes(val.model.toLowerCase()) ||
+          this.state.selectedBrand.includes(val.carName.toLowerCase())
+        );
+      });
     }
 
     //Owners Filter
@@ -284,7 +335,7 @@ class Buy extends React.Component {
 
     return (
       <Fragment>
-        <Banner title="buy"></Banner>
+        <Banner title="buy" class="bg-buy"></Banner>
         <section className="product-listing page-section-ptb">
           <div className="container">
             <div className="row">
@@ -296,11 +347,6 @@ class Buy extends React.Component {
                       style={{ borderRight: "1px solid #ccc" }}
                     >
                       <h5>Filter your search</h5>
-                      {/* <h6 style={filterClass}>By City</h6>
-                      <div className="selected-box">
-                        <select onChange={(e) => this.handleCity(e)}></select>
-                      </div> */}
-
                       <ToggleBox
                         title="By Budget"
                         design={filterClass}
@@ -324,27 +370,43 @@ class Buy extends React.Component {
                         design={filterClass}
                         opened={true}
                       >
-                        {datas[0].content.map((val) => {
-                          var inputId = `make${val.key}`;
-                          return (
-                            <div className="custom-control custom-checkbox">
-                              <input
-                                type="checkbox"
-                                id={inputId}
-                                name="make"
-                                value={val.key}
-                                className="custom-control-input"
-                                onChange={this.handleBrand}
-                              />
-                              <label
-                                htmlFor={inputId}
-                                className="custom-control-label"
-                              >
-                                {val.value}
-                              </label>
-                            </div>
-                          );
-                        })}
+                        <div className="selected-box">
+                          <input
+                            type="text"
+                            name="brand"
+                            value={this.state.searchBrand}
+                            onChange={this.handleSearchBrand}
+                            style={{ width: "100%" }}
+                          />
+                        </div>
+                        <div
+                          style={{
+                            height: "200px",
+                            overflowY: "scroll",
+                          }}
+                        >
+                          {this.state.allBrands.content.map((val) => {
+                            var inputId = `make${val.key}`;
+                            return (
+                              <div className="custom-control custom-checkbox">
+                                <input
+                                  type="checkbox"
+                                  id={inputId}
+                                  name="make"
+                                  value={val.key}
+                                  className="custom-control-input"
+                                  onChange={this.handleBrand}
+                                />
+                                <label
+                                  htmlFor={inputId}
+                                  className="custom-control-label"
+                                >
+                                  {val.value}
+                                </label>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </ToggleBox>
 
                       <ToggleBox
@@ -359,6 +421,7 @@ class Buy extends React.Component {
                           orientation="horizontal"
                           onChange={this.handleKM}
                           tooltip={true}
+                          step={1000}
                         />
                       </ToggleBox>
 

@@ -5,7 +5,7 @@ class Exchange extends React.Component {
   render() {
     return (
       <Fragment>
-        <Banner title="exchange"></Banner>
+        <Banner title="exchange" class="bg-exchange"></Banner>
         <section className="privacy-policy page-section-ptb">
           <div className="container">
             <div className="row">

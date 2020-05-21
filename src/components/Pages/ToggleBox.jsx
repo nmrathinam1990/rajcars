@@ -21,13 +21,6 @@ class ToggleBox extends React.Component {
   render() {
     var { title, children, design } = this.props;
     const { opened } = this.state;
-    let makeDesign;
-    if (title === "By Brand or Modal") {
-      makeDesign = {
-        height: "200px",
-        overflowY: "scroll",
-      };
-    }
 
     return (
       <div className="box">
@@ -39,11 +32,7 @@ class ToggleBox extends React.Component {
             style={{ float: "right" }}
           />
         </h6>
-        {opened && (
-          <div className="boxContent" style={makeDesign}>
-            {children}
-          </div>
-        )}
+        {opened && <div className="boxContent">{children}</div>}
       </div>
     );
   }
