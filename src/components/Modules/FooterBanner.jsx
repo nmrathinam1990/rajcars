@@ -13,7 +13,7 @@ class FooterBanner extends React.Component {
       color: '#fff'
     }
     return (
-      <section className="news-letter-main bg-buy bg-overlay-black-70">
+      <section className="news-letter-main bg-1 bg-overlay-black-70">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

@@ -335,7 +335,7 @@ class Buy extends React.Component {
 
     return (
       <Fragment>
-        <Banner title="buy" class="bg-buy"></Banner>
+        <Banner title="buy" class="bg-1"></Banner>
         <section className="product-listing page-section-ptb">
           <div className="container">
             <div className="row">

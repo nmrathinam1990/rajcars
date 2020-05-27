@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Navigation extends React.Component {
-  handleActive = val => {
+  handleActive = (val) => {
     localStorage.setItem("selectedMenu", val);
     this.props.changeMenu(val);
   };
@@ -90,11 +90,11 @@ class Navigation extends React.Component {
                         Contact
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link exact="true" to="/admin-login">
                         Admin Login
                       </Link>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -108,15 +108,12 @@ class Navigation extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    activeMenu: state.activeMenu.menu
+    activeMenu: state.activeMenu.menu,
   };
 }
 
 const mapDispatchToProps = {
-  changeMenu
+  changeMenu,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navigation);
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

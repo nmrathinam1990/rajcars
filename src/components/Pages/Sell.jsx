@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import Banner from "./shared/Banner.jsx";
+import sellImg from "../Pages/assets/sell.jpg";
 
 class Sell extends React.Component {
-
   // Invoked after the component rerendered. Ie after render function executed and after updation of state or props.
   componentDidUpdate() {
     console.log("Componet Did update");
@@ -38,7 +38,7 @@ class Sell extends React.Component {
   render() {
     return (
       <Fragment>
-        <Banner title="Sell" class="bg-sell"></Banner>
+        <Banner title="Sell" class="bg-1"></Banner>
         <section className="privacy-policy page-section-ptb">
           <div className="container">
             <div className="row">
@@ -50,7 +50,10 @@ class Sell extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-7">
+                <img className="img-fluid center-block" src={sellImg} alt="" />
+              </div>
+              <div className="col-md-5">
                 <p>
                   You looking for the right buyer to sell your car, Getting a
                   low price? Leave it to us, Raj Cars will buy your car for the
