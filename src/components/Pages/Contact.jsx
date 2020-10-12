@@ -122,21 +122,22 @@ class Contact extends React.Component {
                     <p> rajcarschennai@gmail.com </p>
                   </div>
                 </div>
-                <div style={{ width: "50%", height: "auto" }}>
-                  <img src={locationQR} alt="Location QR code" />
-                </div>
+
               </div>
             </div>
           </div>
         </section>
 
         <section className="contact-map">
-          <div className="container-fluid">
+          <div className="container-fluid" style={{position: "relative"}}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15547.033917780765!2d80.1815043!3d13.0510396!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x83703284e0684a9d!2sRaj%20Cars%20Chennai!5e0!3m2!1sen!2sin!4v1581990475044!5m2!1sen!2sin"
               allowfullscreen=""
               title="Location MAP"
             ></iframe>
+            <div class="qr-code">
+              <img src={locationQR} alt="Location QR code" />
+            </div>
           </div>
         </section>
       </Fragment>
