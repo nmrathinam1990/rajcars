@@ -13,7 +13,7 @@ function ProductList(ProductVal) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { Product } = ProductVal;
-  const baseURL = "https://img.cars24.tech/unsafe/260x188/";
+  const baseURL = "http://rajcarschennai.in/admin/images/";
 
   return (
     <Fragment>
@@ -312,12 +312,16 @@ class Buy extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://api-sell24.cars24.team/cars")
+    fetch("http://rajcarschennai.in/admin/api/cars.php")
       .then((results) => {
-        return results.json();
+        if(results.ok){
+          console.log(results);
+          return results.json();
+        }
       })
       .then((result) => {
-        this.setState({ products: result.data.content });
+        console.log('May', result);
+        this.setState({ products: result.content});
       })
       .catch((error) => {
         console.error("Error with fetch operation:", error);

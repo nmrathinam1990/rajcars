@@ -10,7 +10,7 @@ import {
 
 const iconColor = {
   fontSize: "30px",
-  color: "#db2d2e",
+  color: "blue",
   marginBottom: "20px"
 };
 
@@ -43,7 +43,7 @@ class OurServices extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <div className="feature-box-2">
                     <div className="icon" style={iconColor}>
                       <FontAwesomeIcon icon={faGasPump} />
@@ -58,7 +58,7 @@ class OurServices extends React.Component {
                       </p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="row">
                 <div className="col-md-6">
@@ -75,7 +75,7 @@ class OurServices extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <div className="feature-box-2">
                     <div className="icon" style={iconColor}>
                       <FontAwesomeIcon icon={faCogs} />
@@ -88,7 +88,7 @@ class OurServices extends React.Component {
                       </p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="col-md-5" style={{display: display}}>
